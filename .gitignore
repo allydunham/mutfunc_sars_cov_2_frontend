@@ -1,0 +1,4 @@
+public/data/**
+build/**
+node_modules/**
+big_search.tsv
