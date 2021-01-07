@@ -7,5 +7,9 @@ The pipeline code is in a separate [repository](https://github.com/allydunham/mu
 The site is made with [Reactjs](https://reactjs.org/) and [Material UI](https://material-ui.com/), using
 [PV - Protein Viewer](https://biasmv.github.io/pv/) and [React MSA Viewer](https://github.com/plotly/react-msa-viewer) to display proteins and sequences.
 
-The `master` branch contains the most recent updates and the `prod` branch contains the code used on the current version of the website.
+The project uses three main branches:
+
+* master - The most recent WIP updates and features
+* dev - Version currently being run on the test server
+* prod - Version currently on the live server
 
