@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react";
 import Typography from '@material-ui/core/Typography';
-import {json} from 'd3';
+import {json} from 'd3-fetch';
 import {
     Labels,
     MSAViewer,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import {tsv} from "d3";
+import {tsv} from "d3-fetch";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CheckIcon from '@material-ui/icons/Check';
 import { green } from '@material-ui/core/colors';
