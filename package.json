@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
     "source-map-explorer": "^2.5.2"
   },
   "dependencies": {
@@ -13,7 +13,7 @@
     "@material-ui/icons": "^4.9.1",
     "bio-pv": "^1.8.1",
     "clsx": "^1.1.1",
-    "d3-fetch": "^1.2.0",
+    "d3-fetch": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-msa-viewer": "1.0.1",

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import SiftAlignment from './SiftAlignment'
+import CircularProgress from '@material-ui/core/CircularProgress';
+const SiftAlignment = React.lazy(() => import('./SiftAlignment'))
 
 const AlignmentPopup = ({mut, open, setOpen, width=1000}) => {
     return(
@@ -14,10 +15,12 @@ const AlignmentPopup = ({mut, open, setOpen, width=1000}) => {
             <DialogContent>
                 <Grid container justify='center' alignItems='center'>
                     <Grid item xs={12}>
-                        <SiftAlignment
-                          gene={mut['uniprot'] + '_' + mut['name']}
-                          width={width}
-                        />
+                        <Suspense fallback={<CircularProgress />}>
+                            <SiftAlignment
+                              gene={mut['uniprot'] + '_' + mut['name']}
+                              width={width}
+                            />
+                        </Suspense>
                     </Grid>
                 </Grid>
             </DialogContent>

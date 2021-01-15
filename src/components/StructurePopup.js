@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import ProteinViewer from './ProteinViewer'
+import CircularProgress from '@material-ui/core/CircularProgress';
+const ProteinViewer = React.lazy(() => import('./ProteinViewer'))
 
 const StructurePopup = ({mut, int, open, setOpen, width=900, height=700}) => {
     let template = ''
@@ -29,14 +30,16 @@ const StructurePopup = ({mut, int, open, setOpen, width=900, height=700}) => {
             <DialogContent>
                 <Grid container justify='space-evenly' alignItems='center'>
                     <Grid item xs={12}>
-                        <ProteinViewer
-                          pdb_path={path}
-                          position={mut['position']}
-                          chain={chain}
-                          int_chain={int_chain}
-                          width={width}
-                          height={height}
-                        />
+                        <Suspense fallback={<CircularProgress />}>
+                            <ProteinViewer
+                            pdb_path={path}
+                            position={mut['position']}
+                            chain={chain}
+                            int_chain={int_chain}
+                            width={width}
+                            height={height}
+                            />
+                        </Suspense>
                     </Grid>
                     <Grid item>
                         <Typography display='inline' variant='h5' style={{color: '#e6180d'}}>
