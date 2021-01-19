@@ -49,7 +49,7 @@ const styles = makeStyles((theme) => ({
 }));
 
 const buttons = [
-    {name: 'search', path: '/', icon: <SearchIcon/>},
+    {name: 'search', path: '/search', icon: <SearchIcon/>},
     // Don't necessarily need this section, but could include some overview plots of the data.
     // Likely they can just go in the paper
     //{type: 'analysis', icon: <BarChartIcon/>},
