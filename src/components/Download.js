@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import IconButton from '@material-ui/core/IconButton';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = makeStyles({
@@ -31,9 +29,6 @@ const Download = () => {
 
             <Typography variant='h5' className={classes.heading}>
                 Summary table
-                <IconButton href={process.env.PUBLIC_URL + 'data/summary.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains summary data of each feature, containing the key result metric but not additional columns breaking down the result.<br/>Columns:
@@ -60,9 +55,6 @@ const Download = () => {
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Observed Frequencies
-                <IconButton href={process.env.PUBLIC_URL + 'data/frequency.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains data on observed mutation frequencies in the wild, based on the data collected by GSAID.
@@ -80,9 +72,6 @@ const Download = () => {
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 SIFT4G Results
-                <IconButton href={process.env.PUBLIC_URL + 'data/sift.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains the results from&nbsp;
@@ -107,9 +96,6 @@ const Download = () => {
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 FoldX results
-                <IconButton href={process.env.PUBLIC_URL + 'data/foldx.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains results from&nbsp;
@@ -143,9 +129,6 @@ const Download = () => {
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Interface analysis
-                <IconButton href={process.env.PUBLIC_URL + 'data/complex.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains results from&nbsp;
@@ -199,9 +182,6 @@ const Download = () => {
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 PTM Positions
-                <IconButton href={process.env.PUBLIC_URL + 'data/ptms.tsv'}>
-                    <GetAppIcon/>
-                </IconButton>
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 This table contains data on known PTM sites (
