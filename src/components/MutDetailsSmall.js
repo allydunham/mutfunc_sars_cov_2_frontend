@@ -196,7 +196,13 @@ const MutDetailStats = ({mut}) => {
 
                 <TableRow>
                     <TableCell>
-                        FoldX &Delta;&Delta;G: {isNaN(mut['total_energy']) ? 'NA': mut['total_energy']}
+                        Relative Surface Accessibility: {isNaN(mut['relative_surface_accessibility']) ? 'NA': mut['relative_surface_accessibility']}
+                    </TableCell>
+                </TableRow>
+
+                <TableRow>
+                    <TableCell>
+                        FoldX &Delta;&Delta;G: {isNaN(mut['foldx_ddg']) ? 'NA': mut['foldx_ddg']}
                     </TableCell>
                 </TableRow>
 

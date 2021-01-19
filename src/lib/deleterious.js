@@ -15,7 +15,7 @@ export const conservationWeak = (mut) => {
 
 export const structureText = "|FoldX \u0394\u0394G| > 1"
 export const structure = (mut) => {
-    return(Math.abs(mut['total_energy']) > 1)
+    return(Math.abs(mut['foldx_ddg']) > 1)
 }
 
 export const ptmText = "PTM"

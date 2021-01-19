@@ -25,7 +25,7 @@ const Download = () => {
     return(
         <div className={classes.root}>
             <Typography className={classes.content}>
-                The output data from the combined tools and sources is avaiable to download here and on the <Link href="http://ftp.ebi.ac.uk/pub/databases/mutfunc/" target="_blank" rel="noopener noreferrer">Mutfunc FTP</Link>.
+                The output data from the combined tools and sources is avaiable on the <Link href="http://ftp.ebi.ac.uk/pub/databases/mutfunc/" target="_blank" rel="noopener noreferrer">Mutfunc FTP</Link>.
                 Note that the protein names used in these tables are the internal identifiers and in some cases are slightly different from those displayed on the website, for example all are lower case and "nc" is used for N.
             </Typography>
 
@@ -43,18 +43,19 @@ const Download = () => {
                     <li>position: Position in protein</li>
                     <li>wt: WT Amino Acid</li>
                     <li>mut: Mutant Amino Acid</li>
+                    <li>freq: Observed frequency of the mutation in the wild (based on GISAID compiled data)</li>
+                    <li>ptm: Post Translational Modification at the site</li>
                     <li>sift_score: SIFT4G Score</li>
                     <li>sift_median: SIFT4G Median IC</li>
                     <li>template: FoldX PDB Model Template (from SWISS-MODEL, sometimes this will be a direct model of the target protein and sometimes a homology model). Takes the format PDBID.Chain</li>
-                    <li>total_energy: FoldX &Delta;&Delta;G Prediction</li>
-                    <li>ptm: Post Translational Modification at the site</li>
+                    <li>relative_surface_accessibility: Relative residue surface accessiblity of the site as calculated by Naccess. Equivalent ot the residue all_atoms_rel Naccess output column.</li>
+                    <li>foldx_ddg: FoldX &Delta;&Delta;G Prediction</li>
                     <li>int_uniprot: Uniprot ID of interface protein</li>
                     <li>int_name: Name of interface protein</li>
                     <li>int_template: PDB model template of the interface interaction</li>
                     <li>interaction_energy: FoldX &Delta;G Prediction for the interface binding energy with the mutation</li>
                     <li>diff_interaction_energy: Change in interface &Delta;G from the wilt-type</li>
                     <li>diff_interface_residues: FoldX prediction for the change in the number of residues involved in the interface after the mutation</li>
-                    <li>freq: Observed frequency of the mutation in the wild (based on GISAID compiled data)</li>
                 </ul>
             </Typography>
             <Typography variant='h5' className={classes.heading}>

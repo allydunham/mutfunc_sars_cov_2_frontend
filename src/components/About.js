@@ -146,6 +146,17 @@ const About = () => {
                       className={classes.image}
                     />
                 </Link>
+                <Link
+                  href="http://wolf.bms.umist.ac.uk/naccess/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                    <img
+                      src={process.env.PUBLIC_URL + 'images/naccess.gif'}
+                      alt='vep-logo'
+                      height='45px'
+                      className={classes.image}
+                    />
+                </Link>
             </div>
             <Typography className={classes.content}>
                 The pipeline is managed by <Link href="https://snakemake.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">Snakemake</Link>.

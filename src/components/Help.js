@@ -136,13 +136,16 @@ const Help = () => {
                 The structural data consists of:
                 <ul>
                     <li>Whether the position has an post-translational modifications (currently only phosphorylations from <Link href="https://europepmc.org/article/med/32645325" target="_blank" rel="noopener noreferrer"> Bouhaddou et al. (2020) </Link> are included)</li>
-                    <li><Link href="http://foldxsuite.crg.eu/" target="_blank" rel="noopener noreferrer">FoldX</Link> template and &Delta;&Delta;G statistic</li>
+                    <li><Link href="https://swissmodel.expasy.org/" target="_blank" rel="noopener noreferrer">SWISS-Model</Link> template PDB</li>
+                    <li><Link href="http://foldxsuite.crg.eu/" target="_blank" rel="noopener noreferrer">FoldX</Link> &Delta;&Delta;G statistic</li>
+                    <li><Link href="http://wolf.bms.umist.ac.uk/naccess/" target="_blank" rel="noopener noreferrer">Naccess</Link> residue relative surface accessiblity measurement</li>
                 </ul>
 
+                Models were identified using the <Link href="https://swissmodel.expasy.org/repository/species/2697049" target="_blank" rel="noopener noreferrer">SWISS-Model COVID Repository</Link> and contain a mixture of experimental SARS-CoV-2 models and homology models. The quality and completeness of the structure should be considered when interpretting both predictions.
+                This model is viewable with the variant highlighted.
                 The FoldX &Delta;&Delta;G statistic summarises the predicted change in folding energy (&Delta;G) caused by a mutation.
                 This measures the predicted stabilisation (&lt;0) or destabilisation (&gt;0) of the variant, with absolute values greater than one being considered significant.
-                The PDB model used is also listed and is viewable with the variant highlighted.
-                These models were identified using the <Link href="https://swissmodel.expasy.org/repository/species/2697049" target="_blank" rel="noopener noreferrer">SWISS-Model COVID Repository</Link> and contain a mixture of direct SARS-CoV-2 models and homology models. The quality of the structure should be considered when interpretting these predictions.
+                The Naccess prediction measures the relative percentage of the residue surface accessible to solvent compared to an extended Ala - X - Ala conformation.
             </Typography>
             <Typography variant='h6' className={classes.subheading}>
                 Interfaces

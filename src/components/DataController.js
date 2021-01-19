@@ -138,7 +138,8 @@ const DataController = ({hidden}) => {
                     'sift_score': nanOrNumber(value['sift_score']),
                     'sift_median': nanOrNumber(value['sift_median']),
                     'template': value['template'],
-                    'total_energy': nanOrNumber(value['total_energy']),
+                    'foldx_ddg': nanOrNumber(value['foldx_ddg']),
+                    'relative_surface_accessibility': nanOrNumber(value['relative_surface_accessibility']),
                     'ptm': value['ptm'],
                     'freq': nanOrNumber(value['freq']),
                     'interfaces': []
