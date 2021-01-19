@@ -85,19 +85,6 @@ const MutTableOptions = ({options, setOptions}) => {
                         />
                     </FormGroup>
 
-                    <FormLabel component="legend">Options</FormLabel>
-                    <FormGroup className={classes.tableControlGroup}>
-                        <FormControlLabel
-                            labelPlacement='end'
-                            control={<Checkbox
-                                       checked={options['strictSift']}
-                                       onChange={(event) => updateOptions('strictSift', event)}
-                                       color='primary'
-                                    />}
-                            label="Only show SIFT4G "
-                        />
-                    </FormGroup>
-
                     <FormLabel component="legend">Show variants with at least one of:</FormLabel>
                     <FormGroup className={classes.tableControlGroup}>
                         <FormControlLabel
