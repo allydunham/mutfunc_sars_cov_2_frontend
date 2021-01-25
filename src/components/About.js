@@ -152,18 +152,28 @@ const About = () => {
                   rel="noopener noreferrer">
                     <img
                       src={process.env.PUBLIC_URL + 'images/naccess.gif'}
-                      alt='vep-logo'
+                      alt='naccess-logo'
                       height='45px'
+                      className={classes.image}
+                    />
+                </Link>
+                <Link
+                  href="https://github.com/soedinglab/MMseqs2"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                    <img
+                      src={process.env.PUBLIC_URL + 'images/mmseqs2.png'}
+                      alt='mmseqs2-logo'
+                      height='90px'
                       className={classes.image}
                     />
                 </Link>
             </div>
             <Typography className={classes.content}>
                 The pipeline is managed by <Link href="https://snakemake.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">Snakemake</Link>.
-                See the projects <Link href="https://github.com/allydunham/covid19_mutfunc" target="_blank" rel="noopener noreferrer">Github repository</Link> for full technical details of the pipeline and the packages used.
-                This website was primarily built with <Link href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">Reactjs</Link> and <Link href="https://material-ui.com/" target="_blank" rel="noopener noreferrer">Material UI</Link>.
+                See the projects <Link href="https://github.com/allydunham/mutfunc_sars_cov_2" target="_blank" rel="noopener noreferrer">Github repository</Link> for full technical details of the pipeline. The website is built with <Link href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">Reactjs</Link> and <Link href="https://material-ui.com/" target="_blank" rel="noopener noreferrer">Material UI</Link>.
                 &nbsp;<Link href="https://biasmv.github.io/pv/" target="_blank" rel="noopener noreferrer">PV - Protein Viewer</Link> is used for rendering PDB structures and <Link href="https://github.com/plotly/react-msa-viewer" target="_blank" rel="noopener noreferrer">React MSA Viewer</Link> for displaying multiple alignments.
-                Full technical details of the site are again available in the repository.
+                Full technical details of the site are on a separate <Link href="https://github.com/allydunham/mutfunc_sars_cov_2_frontend" target="_blank" rel="noopener noreferrer">Github repository</Link>.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Contact

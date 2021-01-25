@@ -123,7 +123,7 @@ const TitleBar = () => {
                             <ListItem
                               className={classes.listButton}
                               button={true}
-                              href='https://github.com/allydunham/covid19_mutfunc'
+                              href='https://github.com/allydunham/mutfunc_sars_cov_2'
                               target="_blank"
                               rel="noopener noreferrer">
                                 <ListItemIcon><GitHubIcon/></ListItemIcon>
