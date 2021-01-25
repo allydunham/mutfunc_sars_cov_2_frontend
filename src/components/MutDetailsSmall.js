@@ -142,8 +142,8 @@ const MutDetailStats = ({mut}) => {
                     <TableCell>
                         SIFT4G Median IC: {isNaN(mut['sift_median']) ? 'NA': mut['sift_median']}
                         &nbsp;
-                        {mut['sift_median'] > 3.5 || mut['sift_median'] < 2.75 ? (
-                            <Tooltip title="Median IC scores less than 2.75 or greater than 3.5 indicate potentially poor alignment quality. Check the alignment is informative before interpreting the SIFT4G Score">
+                        {mut['sift_median'] > 3.25 ? (
+                            <Tooltip title="Median IC scores are ideally between 2.75 and 3.5. Scores >3.25 and especially >3.5 indicate potentially poor alignment quality. Check the alignment is informative before interpreting the SIFT4G Score">
                                 <WarningIcon color='error' fontSize='inherit'/>
                             </Tooltip>
                         ) : null}
