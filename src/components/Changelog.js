@@ -56,6 +56,10 @@ const About = () => {
                             <li>Orf9b homodimer</li>
                             <li>Orf9b - Tom70</li>
                             <li>Replication Complex (nsp7, nsp8, RdRp and Hel)</li>
+                            <li>S RBD - COVA2-04 Antibody (7JMO)</li>
+                            <li>S RBD - REGN Antibody (6XDG)</li>
+                            <li>S Open State RBD - H014 Fab Antibody (7CAI)</li>
+                            <li>S Open State RBD - H014 Fab Antibody (7CAK)</li>
                         </ul>
                     </li>
                     <li>Phosphorylation sites</li>
