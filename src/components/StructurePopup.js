@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 const ProteinViewer = React.lazy(() => import('./ProteinViewer'))
 
-const StructurePopup = ({mut, int, open, setOpen, width=900, height=700}) => {
+const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, height=0.6}) => {
     let template = ''
     let chain = ''
     let path = ''
@@ -20,6 +20,11 @@ const StructurePopup = ({mut, int, open, setOpen, width=900, height=700}) => {
         [template, chain] = mut['template'].split('.')
         path = [process.env.PUBLIC_URL, 'data/pdb_foldx/', mut['uniprot'], '_',
                 mut['name'], '/', template, '.pdb'].join('')
+    }
+
+    if (relativeSize){
+        width = Math.round(width * window.innerWidth)
+        height = Math.round(height * window.innerHeight)
     }
 
     return(
