@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Typography from '@material-ui/core/Typography';
+
 import {
     Labels,
     MSAViewer,
     PositionBar,
     SequenceViewer,
+    createMSAStore
   } from 'react-msa-viewer';
 
 const SiftAlignmnet = ({seqs, hidden, width=600, height=500}) => {
-    const [alignHeight, setAlignHeight] = useState(height)
-    useEffect(() => setAlignHeight(Math.min(50 + 20 * seqs.length, height)), [height, seqs])
+    const msaStore = createMSAStore({
+            sequences: seqs,
+            width: width,
+            height: Math.min(50 + 20 * seqs.length, height),
+            markerSteps: 4,
+            sequenceScrollBarPositionX: 'top'
+        })
 
     return(
-        <div hidden={hidden} width={width} height={height}>
+        <div hidden={hidden}>
             {seqs.length > 0 ? (
-                <MSAViewer
-                  sequences={seqs}
-                  width={width}
-                  height={alignHeight}
-                  markerSteps={4}
-                  sequenceScrollBarPositionX='top'
-                >
+                <MSAViewer msaStore={msaStore}>
                     <div style={{display: "flex"}} >
                         <div>
                             <br/>
@@ -29,7 +30,7 @@ const SiftAlignmnet = ({seqs, hidden, width=600, height=500}) => {
                         </div>
                         <div>
                             <br/>
-                            <PositionBar />
+                            <PositionBar/>
                             <SequenceViewer/>
                         </div>
                     </div>
