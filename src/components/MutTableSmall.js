@@ -44,6 +44,11 @@ const styles = makeStyles((theme) => ({
         alignItems: 'center',
         width: '100%'
     },
+    mutRow: {
+        "&.Mui-selected, &.Mui-selected:hover": {
+            backgroundColor: "#d9d9d9"
+        }
+    },
     pageButton: {
         flexShrink: 0
     },
@@ -109,10 +114,19 @@ const EmptyRow = ({filtered}) => {
     )
 }
 
-const MutRow = ({mutId, mutData, setSelectedMut}) => {
+const MutRow = ({mutId, mutData, selectedMut, setSelectedMut}) => {
+    const classes = styles()
     const mut = mutData[mutId]
     return(
-        <TableRow hover onClick={(event) => setSelectedMut(mutId)}>
+        <TableRow
+          hover
+          selected={mutId === selectedMut}
+          onClick={(event) => {
+              setSelectedMut(mutId)
+              document.getElementById('details').scrollIntoView({behavior: 'smooth'})
+          }}
+          className={classes.mutRow}
+        >
             <TableCell>
                 {[sarsDisplayNames[mut['name']], ' ', mut['wt'],
                     mut['position'], mut['mut']].join('')}
@@ -122,7 +136,7 @@ const MutRow = ({mutId, mutData, setSelectedMut}) => {
     )
 }
 
-const MutTable = ({ mutIds, mutData, setSelectedMut}) => {
+const MutTable = ({ mutIds, mutData, selectedMut, setSelectedMut}) => {
     const classes = styles();
     const tableHeaders = ['Variant', 'Predictions'];
 
@@ -224,6 +238,7 @@ const MutTable = ({ mutIds, mutData, setSelectedMut}) => {
                                 <MutRow
                                     mutId={i}
                                     mutData={mutData}
+                                    selectedMut={selectedMut}
                                     setSelectedMut={setSelectedMut}
                                     key={i}
                                 />

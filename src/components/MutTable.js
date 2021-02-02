@@ -40,6 +40,11 @@ const styles = makeStyles((theme) => ({
     },
     pageButton: {
         flexShrink: 0
+    },
+    mutRow: {
+        "&.Mui-selected, &.Mui-selected:hover": {
+            backgroundColor: "#d9d9d9"
+        }
     }
 }));
 
@@ -99,10 +104,19 @@ const EmptyRow = ({filtered}) => {
     )
 }
 
-const MutRow = ({mutId, mutData, setSelectedMut}) => {
+const MutRow = ({mutId, mutData, selectedMut, setSelectedMut}) => {
+    const classes = styles()
     const mut = mutData[mutId]
     return(
-        <TableRow hover onClick={(event) => setSelectedMut(mutId)}>
+        <TableRow
+          hover
+          selected={mutId === selectedMut}
+          onClick={(event) => {
+              setSelectedMut(mutId)
+              document.getElementById('details').scrollIntoView({behavior: 'smooth'})
+          }}
+          className={classes.mutRow}
+        >
             <TableCell>{mut['uniprot']}</TableCell>
             <TableCell>{sarsDisplayNames[mut['name']]}</TableCell>
             <TableCell>{mut['position']}</TableCell>
@@ -113,7 +127,7 @@ const MutRow = ({mutId, mutData, setSelectedMut}) => {
     )
 }
 
-const MutTable = ({ mutIds, mutData, setSelectedMut}) => {
+const MutTable = ({ mutIds, mutData, selectedMut, setSelectedMut}) => {
     const classes = styles()
     const tableHeaders = ['Uniprot ID', 'Protein', 'Position', 'WT', 'Mutant', 'Predictions']
 
@@ -129,7 +143,7 @@ const MutTable = ({ mutIds, mutData, setSelectedMut}) => {
     })
     const [filteredIds, setFilteredIds] = useState([])
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(50);
+    const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
     useEffect(() => {
         console.log('Filtering...')
@@ -221,6 +235,7 @@ const MutTable = ({ mutIds, mutData, setSelectedMut}) => {
                                 <MutRow
                                     mutId={i}
                                     mutData={mutData}
+                                    selectedMut={selectedMut}
                                     setSelectedMut={setSelectedMut}
                                     key={i}
                                 />

@@ -88,7 +88,7 @@ const DataDisplay = (props) => {
         <Grid item className={classes.item}>
             <SearchSummary searchResults={searchResults} data={data}/>
         </Grid>
-        <Grid item className={classes.item}>
+        <Grid item id='details' className={classes.item}>
             {small ? (
                 <MutDetailsSmall mut={data[selectedMut]}/>
             ) : (
@@ -97,9 +97,11 @@ const DataDisplay = (props) => {
         </Grid>
         <Grid item className={classes.item}>
             {small ? (
-            <MutTableSmall mutIds={searchResults} mutData={data} setSelectedMut={setSelectedMut}/>
+            <MutTableSmall mutIds={searchResults} mutData={data}
+             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
             ) : (
-            <MutTable mutIds={searchResults} mutData={data} setSelectedMut={setSelectedMut}/>
+            <MutTable mutIds={searchResults} mutData={data}
+             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
             )}
         </Grid>
         </>
