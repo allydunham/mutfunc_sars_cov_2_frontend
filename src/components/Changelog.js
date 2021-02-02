@@ -34,7 +34,7 @@ const About = () => {
     return(
         <div className={classes.root}>
             <Typography variant='h5' className={classes.heading}>
-                01/12/2020 - Version 1.0.0
+                01/02/2021 - Version 1.0.0
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 The initial pipeline implementation calculated the following statistics:
