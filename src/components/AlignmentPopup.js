@@ -6,10 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import {json} from 'd3-fetch';
-const SiftAlignment = React.lazy(() => import('./SiftAlignment'))
+const SiftAlignment = React.lazy(() => import('./SiftAlignment'));
 
 const AlignmentPopup = ({mut, open, setOpen, relativeSize=true, width=0.5, height=0.7}) => {
-    const [seqs, setSeqs] = useState([])
+    const [seqs, setSeqs] = useState([]);
 
     useEffect(() => {
         let gene = mut['uniprot'] + '_' + mut['name']
@@ -34,7 +34,7 @@ const AlignmentPopup = ({mut, open, setOpen, relativeSize=true, width=0.5, heigh
                 <Grid container justify='center' alignItems='center'>
                     <Grid item xs={12}>
                         <Typography>
-                            {seqs.length} sequences aligned. Click and drag to scroll the alignment.
+                            {seqs.length} aligned sequences. Click and drag to scroll the alignment.
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
