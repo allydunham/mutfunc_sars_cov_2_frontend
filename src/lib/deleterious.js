@@ -2,7 +2,7 @@
 export const conservationText = "SIFT4G Score < 0.05 (High Confidence)"
 export const conservation = (mut) => {
     return(mut['sift_score'] < 0.05 &&
-           mut['sift_median'] < 3.25)
+           mut['sift_median'] <= 3.25)
 }
 
 export const conservationWeakText = "SIFT4G Score < 0.05 (Low Confidence)"

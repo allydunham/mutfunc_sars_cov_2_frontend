@@ -86,11 +86,11 @@ const Help = () => {
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='conservation'/>
-                        &nbsp;&nbsp;Conservation (High Confidence): SIFT4G Score &lt; 0.05 and Median IC &lt; 3.25
+                        &nbsp;&nbsp;Conservation (High Confidence): SIFT4G Score &lt; 0.05 and Median IC &le; 3.25
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='conservationWeak'/>
-                        &nbsp;&nbsp;Conservation (Low Confidence): SIFT4G Score &lt; 0.05 but Median IC &lt; 3.25, indicating a potentially suboptimal alignment.
+                        &nbsp;&nbsp;Conservation (Low Confidence): SIFT4G Score &lt; 0.05 but Median IC &gt; 3.25, indicating a potentially suboptimal alignment.
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='structure'/>
