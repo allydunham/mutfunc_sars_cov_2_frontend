@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { deepPurple, amber, lightBlue, green, red } from '@material-ui/core/colors';
+import { deepPurple, amber, lightBlue, green, red, pink} from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from  'clsx';
 import * as deleterious from '../lib/deleterious';
@@ -38,6 +38,10 @@ const styles = makeStyles((theme) => ({
         color: theme.palette.getContrastText(red['A700']),
         backgroundColor: red['A700']
     },
+    antibodyBadge: {
+        color: theme.palette.getContrastText(pink['A700']),
+        backgroundColor: pink['A700']
+    },
     large: {
         width: theme.spacing(4),
         height: theme.spacing(4)
@@ -61,6 +65,7 @@ const badgeLetters = {
     'ptm': 'P',
     'interfaces': 'I',
     'frequency': 'F',
+    'antibody': 'A'
 }
 
 export const MutBadge = ({type, small}) => {
@@ -83,13 +88,13 @@ export const LabeledMutBadge = ({type, small, variant='body1'}) => {
 }
 
 export const BadgeKey = ({column}) => {
+    const classes = styles()
     return(
         <Grid container spacing={2} justify='center' direction={column ? 'column' : 'row'}>
             <Grid item>
-                <LabeledMutBadge type='conservation' small variant='caption'/>
-            </Grid>
-            <Grid item>
-                <LabeledMutBadge type='conservationWeak' small variant='caption'/>
+                <Typography variant='caption' display='inline' className={classes.badgeKey}>
+                    <MutBadge type='conservation' small/>&nbsp;/&nbsp;<MutBadge type='conservationWeak' small/>&nbsp; SIFT4G Score &lt; 0.05 (High/Low Confidence)
+                </Typography>
             </Grid>
             <Grid item>
                 <LabeledMutBadge type='structure' small variant='caption'/>
@@ -102,6 +107,9 @@ export const BadgeKey = ({column}) => {
             </Grid>
             <Grid item>
                 <LabeledMutBadge type='frequency' small variant='caption'/>
+            </Grid>
+            <Grid item>
+                <LabeledMutBadge type='antibody' small variant='caption'/>
             </Grid>
         </Grid>
     )
@@ -127,6 +135,9 @@ const MutBadges = ({mut}) => {
         ) : null}
         {deleterious.frequency(mut) ? (
             <MutBadge type='frequency'/>
+        ) : null}
+        {deleterious.antibody(mut) ? (
+            <MutBadge type='antibody'/>
         ) : null}
         </div>
     )

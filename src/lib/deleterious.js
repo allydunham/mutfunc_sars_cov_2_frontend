@@ -30,3 +30,8 @@ export const frequencyText = "Observed Frequency > 0.01"
 export const frequency = (mut) => {
     return(mut['freq'] > 0.01)
 }
+
+export const antibodyText = " Antibody Escape (mean proportion > 0.05 or max > 0.2)"
+export const antibody = (mut) => {
+    return(mut['mut_escape_mean'] > 0.05 || mut['mut_escape_max'] > 0.2)
+}

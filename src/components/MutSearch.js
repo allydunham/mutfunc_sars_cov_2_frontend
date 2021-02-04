@@ -10,17 +10,17 @@ import red from '@material-ui/core/colors/red';
 import { makeStyles } from '@material-ui/core/styles';
 
 // add e to test very large search
-const sampleSearch = `s M1A
-nsp12 K603D
-nsp3 N1810G
-nsp10 I38A
-nsp10 V42A
-nsp8 P116A
-nsp7 N69I
-s 10
-P0DTC3 133
-P0DTC3 C133K
-orf10 I4L`
+const sampleSearch = `S N501Y
+S D614G
+nsp12 F157L
+orf3a Q57H
+RdRp P323L
+N S180I
+P0DTC2 E484Q
+S F456A
+nsp1 D152G
+M 152
+P0DTC4 F20`
 
 const searchHelpText = `Search for SARS-CoV-2 variants
 

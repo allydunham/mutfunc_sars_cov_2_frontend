@@ -9,7 +9,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MutSearch from "./MutSearch"
 import MutDetails from "./MutDetails"
-import MutDetailsSmall from "./MutDetailsSmall"
 import MutTable from "./MutTable"
 import MutTableSmall from "./MutTableSmall"
 import SearchSummary from "./SearchSummary"
@@ -89,11 +88,7 @@ const DataDisplay = (props) => {
             <SearchSummary searchResults={searchResults} data={data}/>
         </Grid>
         <Grid item id='details' className={classes.item}>
-            {small ? (
-                <MutDetailsSmall mut={data[selectedMut]}/>
-            ) : (
-                <MutDetails mut={data[selectedMut]}/>
-            )}
+            <MutDetails small={small} mut={data[selectedMut]}/>
         </Grid>
         <Grid item className={classes.item}>
             {small ? (
@@ -144,6 +139,9 @@ const DataController = ({hidden}) => {
                     'relative_surface_accessibility': nanOrNumber(value['relative_surface_accessibility']),
                     'ptm': value['ptm'],
                     'freq': nanOrNumber(value['freq']),
+                    'mut_escape_mean': nanOrNumber(value['mut_escape_mean']),
+                    'mut_escape_max': nanOrNumber(value['mut_escape_max']),
+                    'annotation': value['annotation'],
                     'interfaces': []
                 }
             }
