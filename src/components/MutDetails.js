@@ -221,9 +221,9 @@ const ExperimentSection = ({mut, small}) => {
 
 
 const AnnotationLine = ({str}) => {
-    let links = [...str.matchAll(/\[([^[\]]+)\]\(([\w\d.:/?=#]+)\)/g)].map((v, i) => <Link key={'l' + i} href={v[2]} target="_blank" rel="noopener noreferrer">{v[1]}</Link>)
+    let links = [...str.matchAll(/\[([^[\]]+)\]\(([\w-.:/?=#]+)\)/g)].map((v, i) => <Link key={'l' + i} href={v[2]} target="_blank" rel="noopener noreferrer">{v[1]}</Link>)
 
-    str = str.split(/\[[^[\]]+\]\([\w\d.:/?=#]+\)/g).reduce((a, v, i) => a.concat(<Fragment key={'t' + i}>{v}</Fragment>, links[i]), [])
+    str = str.split(/\[[^[\]]+\]\([\w-.:/?=#]+\)/g).reduce((a, v, i) => a.concat(<Fragment key={'t' + i}>{v}</Fragment>, links[i]), [])
 
     return(
         <li>
