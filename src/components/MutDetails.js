@@ -39,6 +39,12 @@ const styles = makeStyles((theme) => ({
 }));
 
 const DetailsSection = ({title, small, children}) => {
+    const mapper = small ? (
+        (v, i) => <TableRow key={i}><TableCell>{v}</TableCell></TableRow>
+    ) : (
+        (v, i) => <TableCell key={i}>{v}</TableCell>
+    )
+
     return(
         <>
         {!title ? null : (
@@ -50,14 +56,10 @@ const DetailsSection = ({title, small, children}) => {
                 </TableCell>
             </TableRow>
         )}
-        {typeof children === 'undefined' ? null : (
-            small ? (
-                children.map((v, i) => <TableRow key={i}><TableCell>{v}</TableCell></TableRow>)
-            ) : (
-                <TableRow>
-                    {children.map((v, i) => <TableCell key={i}>{v}</TableCell>)}
-                </TableRow>
-            )
+        {small ? (
+            React.Children.map(children, mapper)
+        ) : (
+            <TableRow>{React.Children.map(children, mapper)}</TableRow>
         )}
         </>
     )
@@ -150,7 +152,7 @@ const Interface = ({mut, int, small}) => {
     return(
     <DetailsSection small={small}>
         <Typography>
-            <b>Interface partner</b>: <Link href={"https://www.uniprot.org/uniprot/" + int['uniprot']} target="_blank" rel="noopener noreferrer">{int['uniprot']}</Link> {int['name'] in sarsDisplayNames ? sarsDisplayNames[int['name']] : int['name']}
+            <b>Partner</b>: <Link href={"https://www.uniprot.org/uniprot/" + int['uniprot']} target="_blank" rel="noopener noreferrer">{int['uniprot']}</Link> {int['name'] in sarsDisplayNames ? sarsDisplayNames[int['name']] : int['name']}
         </Typography>
         <Typography>
             <b>Template</b>: <Link href={"https://www.ebi.ac.uk/pdbe/entry/pdb/" + int['template'].split('.')[0]} target="_blank" rel="noopener noreferrer">{int['template']}</Link>
@@ -180,19 +182,21 @@ const Interface = ({mut, int, small}) => {
 }
 
 const InterfaceSection = ({mut, small}) => {
-    if (mut['interfaces'].length === 0){
-        return(
-            <DetailsSection small={small} title='Interfaces'>
-                <Typography>No interfaces in dataset</Typography>
-            </DetailsSection>
-        )
-    }
     return(
         <>
         <DetailsSection small={small} title='Interfaces'/>
-        {mut['interfaces'].map((x) => (
+        {mut['interfaces'].length === 0 ? (
+            <TableRow>
+                <TableCell colSpan={small ? 1 : 5} align="center">
+                    <Typography>
+                        No interfaces in this dataset
+                    </Typography>
+                </TableCell>
+            </TableRow>
+        ) : (
+        mut['interfaces'].map((x) => (
             <Interface key={x['template']} mut={mut} int={x} small={small}/>
-        ))}
+        )))}
         </>
     )
 }
