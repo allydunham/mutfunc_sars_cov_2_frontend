@@ -81,7 +81,11 @@ export const MutBadge = ({type, small}) => {
 export const LabeledMutBadge = ({type, small, variant='body1'}) => {
     const classes = styles()
     return(
-        <Typography variant={variant} display='inline' className={classes.badgeKey}>
+        <Typography
+           variant={variant}
+           component='span'
+           display='inline'
+           className={classes.badgeKey}>
             <MutBadge type={type} small={small}/>&nbsp; {deleterious[type + 'Text']}
         </Typography>
     )
