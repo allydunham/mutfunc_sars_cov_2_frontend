@@ -64,6 +64,8 @@ const About = () => {
                     </li>
                     <li>Phosphorylation sites</li>
                     <li>Variant frequency, based on the GISAID dataset from 16/10/2020</li>
+                    <li>Antibody Escape data from Greaney et al. 2021</li>
+                    <li>Manual variant annotation, for exampling giving well known strains a variant is found in</li>
                 </ul>
             </Typography>
             <Typography component={'span'} className={classes.content}>

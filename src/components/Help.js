@@ -104,6 +104,10 @@ const Help = () => {
                         <MutBadge type='ptm'/>
                         &nbsp;&nbsp;PTM: {deleterious.ptmText}
                     </li>
+                    <li className={classes.badgeKey}>
+                        <MutBadge type='antibody'/>
+                        &nbsp;&nbsp;Experimental Antibody Escape: {deleterious.antibodyText}
+                    </li>
                 </ul>
 
                 The predictions column shows which factors are predicted to be significant.
@@ -163,6 +167,18 @@ const Help = () => {
                 <ul>
                     {config.complexes.map((i) => <li key={i}>{i}</li>)}
                 </ul>
+            </Typography>
+            <Typography variant='h6' className={classes.subheading}>
+                Experimental Results
+            </Typography>
+            <Typography component={'span'} className={classes.content}>
+                Currently this section only includes data from <Link href="https://doi.org/10.1016/j.chom.2020.11.007" target="_blank" rel="noopener noreferrer">Greaney et al. (2021)</Link>, who performed a deep mutational scan measuring the proportion of proteins carrying each Spike variant that escaped binding by a range of antibody mixtures. Further relavent large scale experiments may be added in future.
+            </Typography>
+            <Typography variant='h6' className={classes.subheading}>
+                Additional Annotation
+            </Typography>
+            <Typography className={classes.content}>
+                Further curated information about notable variants is included here. It includes presence in well known variant strains and observations from experiment. This data is manually curated and is therefore not comprehensive.
             </Typography>
         </div>
     )
