@@ -18,7 +18,8 @@ import ResultsTableSmall from './ResultsTableSmall'
 const styles = makeStyles({
     root: {
         flexGrow: 1,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 'auto'
     },
     item: {
         width: "75%"
