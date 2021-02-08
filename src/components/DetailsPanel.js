@@ -269,7 +269,9 @@ const DetailsPanel = ({mut, small}) => {
     if (mut == null){
         return(
             <Paper className={classes.root} variant="outlined" elevation={3}>
-                <Typography align='center'>Click a result to view details</Typography>
+                <Typography align='center'>
+                    Select a variant from the table below to view detailed annotation
+                </Typography>
             </Paper>
         )
     }
