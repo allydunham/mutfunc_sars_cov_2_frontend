@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Link from "@material-ui/core/Link";
 import Tooltip from "@material-ui/core/Tooltip";
 import WarningIcon from '@material-ui/icons/Warning';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { sarsDisplayNames } from '../lib/sars'
 
@@ -71,6 +72,9 @@ const ConservationSection = ({mut, small}) => {
         <DetailsSection small={small} title='Conservation'>
             <Typography>
                 <b>Frequency</b>: {isNaN(mut['freq']) ? 'Not Observed': mut['freq']}
+                <Tooltip title="Frequency reflects the overall frequency a variant has been observed since the start of the pandemic, across a large library of samples. It does not reflect current global or regional prevalence">
+                    <HelpOutlineIcon fontSize='inherit'/>
+                </Tooltip>
             </Typography>
             <Typography>
                 <b>SIFT4G Score</b>: {isNaN(mut['sift_score']) ? 'NA': mut['sift_score']}
