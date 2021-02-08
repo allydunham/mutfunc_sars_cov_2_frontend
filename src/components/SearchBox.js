@@ -66,6 +66,13 @@ const SearchBox = ({ search, setSearch, showSample }) => {
                     fullWidth
                 />
             </Grid>
+            {showSample ? (
+                <Grid item className={classes.item}>
+                    <Button onClick={() => setNewSearch(sampleSearch)}>
+                        Load example search
+                    </Button>
+                </Grid>
+            ) : null}
             <Grid item className={classes.item}>
                 <Button
                     onClick={processSearch}
@@ -78,13 +85,6 @@ const SearchBox = ({ search, setSearch, showSample }) => {
                     Search
                 </Button>
             </Grid>
-            {showSample ? (
-                <Grid item className={classes.item}>
-                    <Button onClick={() => setNewSearch(sampleSearch)}>
-                        Load sample search
-                    </Button>
-                </Grid>
-            ) : null}
         </Grid>
     )
 }
