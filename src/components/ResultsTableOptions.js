@@ -38,7 +38,7 @@ const styles = makeStyles((theme) => ({
     }
 }));
 
-const MutTableOptions = ({options, setOptions}) => {
+const ResultsTableOptions = ({options, setOptions}) => {
     const classes = styles()
     const [open, setOpen] = useState(false)
 
@@ -155,4 +155,4 @@ const MutTableOptions = ({options, setOptions}) => {
     )
 }
 
-export default MutTableOptions
+export default ResultsTableOptions

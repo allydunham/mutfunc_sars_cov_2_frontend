@@ -263,7 +263,7 @@ const AnnotationSection = ({mut, small}) => {
     )
 }
 
-const MutDetails = ({mut, small}) => {
+const DetailsPanel = ({mut, small}) => {
    const classes = styles();
 
     if (mut == null){
@@ -321,4 +321,4 @@ const MutDetails = ({mut, small}) => {
     )
 }
 
-export default MutDetails
+export default DetailsPanel

@@ -5,6 +5,48 @@ export function makeMutKey(mut){
     return [mut['name'], '_', mut['wt'], mut['position'], mut['mut']].join('')
 }
 
+function nanOrNumber(x){
+    return x === ''? NaN : Number(x)
+}
+
+// Reducer parsing a raw mutation TSV line object (as imported by d3-fetch)
+export function addMutToMap(map, mut){
+    const key = makeMutKey(mut)
+    if (!(key in map)){
+        map[key] = {
+            'uniprot': mut['uniprot'],
+            'name': mut['name'],
+            'position': nanOrNumber(mut['position']),
+            'wt': mut['wt'],
+            'mut': mut['mut'],
+            'sift_score': nanOrNumber(mut['sift_score']),
+            'sift_median': nanOrNumber(mut['sift_median']),
+            'template': mut['template'],
+            'foldx_ddg': nanOrNumber(mut['foldx_ddg']),
+            'relative_surface_accessibility': nanOrNumber(mut['relative_surface_accessibility']),
+            'ptm': mut['ptm'],
+            'freq': nanOrNumber(mut['freq']),
+            'mut_escape_mean': nanOrNumber(mut['mut_escape_mean']),
+            'mut_escape_max': nanOrNumber(mut['mut_escape_max']),
+            'annotation': mut['annotation'],
+            'interfaces': []
+        }
+    }
+
+    if (mut['int_name'] !== ''){
+        map[key]['interfaces'].push({
+            'name': mut['int_name'],
+            'uniprot': mut['int_uniprot'],
+            'template': mut['int_template'],
+            'interaction_energy': nanOrNumber(mut['interaction_energy']),
+            'diff_interaction_energy': nanOrNumber(mut['diff_interaction_energy']),
+            'diff_interface_residues': nanOrNumber(mut['diff_interface_residues'])
+        })
+    }
+
+    return map
+}
+
 export function compareMutIds(mut1, mut2){
     let [gene1, pos1] = mut1.split('_')
     mut1 = pos1.slice(-1)

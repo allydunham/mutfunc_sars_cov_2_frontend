@@ -1,115 +1,33 @@
 import React, { useState, useEffect} from "react";
 import {tsv} from "d3-fetch";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import CheckIcon from '@material-ui/icons/Check';
-import { green } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import MutSearch from "./MutSearch"
-import MutDetails from "./MutDetails"
-import MutTable from "./MutTable"
-import MutTableSmall from "./MutTableSmall"
-import SearchSummary from "./SearchSummary"
-import { makeMutKey, searchMutations } from "../lib/mutations";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from './Home';
+import Search from './Search';
+import About from './About';
+import Download from './Download';
+import Help from './Help';
+import Changelog from './Changelog';
+import { addMutToMap, searchMutations } from "../lib/mutations";
 
-const styles = makeStyles({
-    root: {
-        flexGrow: 1,
-        textAlign: 'center'
-    },
-    item: {
-        width: "75%"
-    },
-    check: {
-        color: green[500]
-    },
-    hidden: {
-        display: 'none'
-    }
-});
-
-const DataDisplay = (props) => {
-    const theme = useTheme();
-    const classes = styles();
-    const small = useMediaQuery(theme.breakpoints.down('sm'));
-    const {dataReady, dataNotification, searchResults,
-           searching, data, selectedMut, setSelectedMut,
-           search} = props;
-    const [longSearch, setLongSearch] = useState(false)
-
-    if (!dataReady){
-        return(
-            <Grid item className={classes.item}>
-                <CircularProgress />
-                <br/>
-                <Typography>Loading Data</Typography>
-            </Grid>
-        )
-    }
-
-    if (searching){
-        if (!longSearch){
-            setTimeout(() => setLongSearch(true), 500)
-            return <></>
-        } else {
-            return(
-                <Grid item className={classes.item}>
-                    <CircularProgress />
-                    <br/>
-                    <Typography>Searching...</Typography>
-                </Grid>
-            )
-        }
-    } else if (longSearch) {
-        setLongSearch(false)
-    }
-
-    if (!dataNotification && searchResults.length === 0){
-        return(
-            <Grid item className={classes.item}>
-                <CheckIcon className={classes.check} fontSize='large'/>
-                <br/>
-                <Typography>Data Loaded!</Typography>
-            </Grid>
-        )
-    }
-
-    // Keep site clean before a search has happened, once data loaded etc.
-    if (search === false){
-        return <></>
-    }
-
-    // Return results table if no special case is found
+// Page to show when no other found
+function PageNotFound() {
     return(
         <>
-        <Grid item className={classes.item}>
-            <SearchSummary searchResults={searchResults} data={data}/>
-        </Grid>
-        <Grid item id='details' className={classes.item}>
-            <MutDetails small={small} mut={data[selectedMut]}/>
-        </Grid>
-        <Grid item className={classes.item}>
-            {small ? (
-            <MutTableSmall mutIds={searchResults} mutData={data}
-             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
-            ) : (
-            <MutTable mutIds={searchResults} mutData={data}
-             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
-            )}
-        </Grid>
+        <Typography variant='h4' align='center' gutterBottom>
+            <br/>Page Not Found
+        </Typography>
+        <Typography align='center'>
+            Use the menu bar above to navigate the site
+        </Typography>
         </>
     )
 }
 
-function nanOrNumber(x){
-    return x === ''? NaN : Number(x)
-}
-
-const DataController = ({hidden}) => {
-    const classes = styles();
-
+// Main site controller - this component manages the shared state
+// and dispatches it between the various pages
+// Downloading, storing and searching the main dataset is done here
+const DataController = () => {
     const [data, setData] = useState([]);
     const [dataReady, setDataReady] = useState(false);
     const [dataNotification, setDataNotification] = useState(false);
@@ -119,49 +37,14 @@ const DataController = ({hidden}) => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchErrors, setSearchErrors] = useState([]);
 
-    const [selectedMut, setSelectedMut] = useState(null)
+    const [selectedMut, setSelectedMut] = useState(null);
 
+    // Initial Data Load
     useEffect(() => {
         console.log('Fetching Data...');
-        function reducer(map, value){
-            const key = makeMutKey(value)
-            if (!(key in map)){
-                map[key] = {
-                    'uniprot': value['uniprot'],
-                    'name': value['name'],
-                    'position': nanOrNumber(value['position']),
-                    'wt': value['wt'],
-                    'mut': value['mut'],
-                    'sift_score': nanOrNumber(value['sift_score']),
-                    'sift_median': nanOrNumber(value['sift_median']),
-                    'template': value['template'],
-                    'foldx_ddg': nanOrNumber(value['foldx_ddg']),
-                    'relative_surface_accessibility': nanOrNumber(value['relative_surface_accessibility']),
-                    'ptm': value['ptm'],
-                    'freq': nanOrNumber(value['freq']),
-                    'mut_escape_mean': nanOrNumber(value['mut_escape_mean']),
-                    'mut_escape_max': nanOrNumber(value['mut_escape_max']),
-                    'annotation': value['annotation'],
-                    'interfaces': []
-                }
-            }
-
-            if (value['int_name'] !== ''){
-                map[key]['interfaces'].push({
-                    'name': value['int_name'],
-                    'uniprot': value['int_uniprot'],
-                    'template': value['int_template'],
-                    'interaction_energy': nanOrNumber(value['interaction_energy']),
-                    'diff_interaction_energy': nanOrNumber(value['diff_interaction_energy']),
-                    'diff_interface_residues': nanOrNumber(value['diff_interface_residues'])
-                })
-            }
-
-            return map
-        }
         tsv(process.env.PUBLIC_URL + '/data/summary.tsv')
             .then((download) => {
-                const mutMap = download.reduce(reducer, {});
+                const mutMap = download.reduce(addMutToMap, {});
                 setData(mutMap);
                 console.log('Data Loaded');
                 setDataReady(true);
@@ -169,9 +52,13 @@ const DataController = ({hidden}) => {
             })
     }, []);
 
+    // Search data for variants
     useEffect(() => {
         if (!(search === false)){
             setSelectedMut(null)
+            setSearchResults([])
+            setSearchErrors([])
+            setSearching(true)
             searchMutations(search, data).then((result) => {
                 console.log(result)
                 setSearchResults(result['results']);
@@ -184,27 +71,50 @@ const DataController = ({hidden}) => {
     }, [search, data])
 
     return(
-        <Grid container spacing={4} direction="column" alignItems="center"
-              className={hidden ? classes.hidden : classes.root}>
-            <Grid item className={classes.item}>
-                <MutSearch
+        <Switch>
+            <Route exact path="/">
+                <Redirect to="/home"/>
+            </Route>
+
+            <Route path="/home">
+                <Home search={search} setSearch={setSearch}/>
+            </Route>
+
+            <Route path="/search">
+                <Search
+                  data={data}
+                  dataReady={dataReady}
+                  dataNotification={dataNotification}
                   search={search}
                   setSearch={setSearch}
-                  errors={searchErrors}
+                  searchResults={searchResults}
+                  searchErrors={searchErrors}
                   searching={searching}
-                  setSearching={setSearching}/>
-            </Grid>
-            <DataDisplay
-              dataReady={dataReady}
-              dataNotification={dataNotification}
-              search={search}
-              searchResults={searchResults}
-              searching={searching}
-              data={data}
-              selectedMut={selectedMut}
-              setSelectedMut={setSelectedMut}
-            />
-        </Grid>
+                  selectedMut={selectedMut}
+                  setSelectedMut={setSelectedMut}
+                />
+            </Route>
+
+            <Route path="/help">
+                <Help/>
+            </Route>
+
+            <Route path="/about">
+                <About/>
+            </Route>
+
+            <Route path="/download">
+                <Download/>
+            </Route>
+
+            <Route path="/changelog">
+                <Changelog/>
+            </Route>
+
+            <Route path="*">
+                <PageNotFound/>
+            </Route>
+        </Switch>
     )
 }
 
