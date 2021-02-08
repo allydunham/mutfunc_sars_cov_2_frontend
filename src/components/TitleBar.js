@@ -24,8 +24,8 @@ const styles = makeStyles((theme) => ({
     logo: {
         marginRight: '10px',
         width: 'auto',
-        maxWidth: '50%',
-        height: '3vh'
+        maxWidth: '70%',
+        height: '5vh'
     },
     separater: {
         flexGrow: 1
@@ -99,11 +99,13 @@ const TitleBar = () => {
     return(
         <AppBar position='sticky' elevation={0} color='secondary'>
             <Toolbar>
-                <img
-                    src={process.env.PUBLIC_URL + 'images/mutfunc_logo.svg'}
-                    alt='mutfunc-logo'
-                    className={classes.logo}
-                />
+                <Link to='/'>
+                    <img
+                        src={process.env.PUBLIC_URL + 'images/mutfunc_logo.svg'}
+                        alt='mutfunc-logo'
+                        className={classes.logo}
+                    />
+                </Link>
                 <div className={classes.separater}/>
                 {small ? (
                     <>
