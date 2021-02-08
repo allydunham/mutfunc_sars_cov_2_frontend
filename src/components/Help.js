@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import { MutBadge } from './MutBadges'
-import * as deleterious from '../lib/deleterious'
 import config from '../config'
 
 const styles = makeStyles({
@@ -41,14 +40,14 @@ const Help = () => {
             <Typography className={classes.content}>
                 Mutfunc: SARS-CoV-2 provides a subset of <Link href='https://www.mutfunc.com'>Mutfunc</Link> variant effect predictions for SARS-CoV-2, the novel coronavirus responsible for COVID-19.
                 Mutfunc is a database of precomputed variant effect predictions from various tools for all <i>S. cerevisiae</i>, <i>H. sapians</i> and <i>E. coli</i> variants.
-                The main Mutfunc website has predictions conservation, structural consequences, protein interfaces, post-transational modifications, transcription factor binding sites and linear motifs.
-                Mutfunc: SARS-CoV-2 currently covers variants overall frequency, conservation, structural consequences, protein interfaces and phosphosites.
+                The main Mutfunc website has predictions based on conservation, structural consequences, protein interfaces, post-transational modifications, transcription factor binding sites and linear motifs.
+                Mutfunc: SARS-CoV-2 currently covers variants' overall frequency, conservation, structural consequences, protein interfaces and phosphosites.
                 The predictions found here are largely computational predictions and must be interpreted with care, complementaing other evidence or prioritising variants for further study.
             </Typography>
             <Typography className={classes.content}>
-                The website provides an interface for searching variants online, downloading complete dataset and gives an overview analysis of the data.
+                The website provides an interface for searching variants online, downloading the complete dataset and gives an overview analysis of the data.
                 Additional breakdowns of all statistics, for example the factors contributing to FoldX's &Delta;&Delta;G statistic, are available in the full dataset.
-                Most features work on smaller screens/windows but the interface is geared towards for desktop so use on mobile may not be as smooth.
+                Most features work on smaller screens/windows but the interface is geared towards for desktop so use on small screen may not be as smooth.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Searching Variants
@@ -82,7 +81,7 @@ const Help = () => {
                 <ul className={classes.badgeList}>
                     <li className={classes.badgeKey}>
                         <MutBadge type='frequency'/>
-                        &nbsp;&nbsp;Frequency: {deleterious.frequencyText}
+                        &nbsp;&nbsp;Frequency: The variant has been observed in &gt; 1% of samples taken since the start of the pandemic, based on the GISAID sample library
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='conservation'/>
@@ -94,24 +93,24 @@ const Help = () => {
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='structure'/>
-                        &nbsp;&nbsp;Structure: {deleterious.structureText}
+                        &nbsp;&nbsp;Structure: FoldX &Delta;&Delta;G &gt; 1, indicating the variant destabilises the protein, or &Delta;&Delta;G &lt; 1, indicating stabilisation.
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='interfaces'/>
-                        &nbsp;&nbsp;Interfaces: {deleterious.interfacesText}
+                        &nbsp;&nbsp;Interfaces: The site is in a known interface with another protein. Includes other viral proteins, human proteins and antibodies.
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='ptm'/>
-                        &nbsp;&nbsp;PTM: {deleterious.ptmText}
+                        &nbsp;&nbsp;PTM: The site has a post-translational modification (currently only phosphorylations are annotated).
                     </li>
                     <li className={classes.badgeKey}>
                         <MutBadge type='antibody'/>
-                        &nbsp;&nbsp;Experimental Antibody Escape: {deleterious.antibodyText}
+                        &nbsp;&nbsp;Experimental Antibody Escape: variants have a mean antibody escape proportion over 0.05 or a maximum escape proportion over 0.2 <Link href="https://doi.org/10.1016/j.chom.2020.11.007" target="_blank" rel="noopener noreferrer">(Greaney et al., 2021)</Link>
                     </li>
                 </ul>
 
                 The predictions column shows which factors are predicted to be significant.
-                Clicking on a variants row opens a panel with additional details on predictions.
+                Clicking on a row opens a panel with additional details on predictions for that variant.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Predictions
@@ -139,7 +138,7 @@ const Help = () => {
             <Typography component={'span'} className={classes.content}>
                 The structural data consists of:
                 <ul>
-                    <li>Whether the position has an post-translational modifications (currently only phosphorylations from <Link href="https://europepmc.org/article/med/32645325" target="_blank" rel="noopener noreferrer"> Bouhaddou et al. (2020) </Link> are included)</li>
+                    <li>Whether the position has a post-translational modifications (currently only phosphorylations from <Link href="https://europepmc.org/article/med/32645325" target="_blank" rel="noopener noreferrer"> Bouhaddou et al. (2020) </Link> are included)</li>
                     <li><Link href="https://swissmodel.expasy.org/" target="_blank" rel="noopener noreferrer">SWISS-Model</Link> template PDB</li>
                     <li><Link href="http://foldxsuite.crg.eu/" target="_blank" rel="noopener noreferrer">FoldX</Link> &Delta;&Delta;G statistic</li>
                     <li><Link href="http://wolf.bms.umist.ac.uk/naccess/" target="_blank" rel="noopener noreferrer">Naccess</Link> residue relative surface accessiblity measurement</li>
