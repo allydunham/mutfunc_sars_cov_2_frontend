@@ -24,8 +24,7 @@ const styles = makeStyles((theme) => ({
     logo: {
         marginRight: '10px',
         width: 'auto',
-        maxWidth: '70%',
-        height: '5vh'
+        maxWidth: '70%'
     },
     separater: {
         flexGrow: 1
