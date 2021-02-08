@@ -5,9 +5,22 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import { makeStyles } from '@material-ui/core/styles';
+
 const ProteinViewer = React.lazy(() => import('./ProteinViewer'))
 
+const styles = makeStyles({
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+});
+
 const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, height=0.6}) => {
+    const classes = styles()
     let template = ''
     let chain = ''
     let path = ''
@@ -29,8 +42,13 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
 
     return(
         <Dialog open={open} onClose={() => setOpen(false)} scroll='body' fullWidth maxWidth='lg'>
-            <DialogTitle>
-                {int ? 'Interface Structure Model' : 'Structure Model'}
+            <DialogTitle disableTypography className={classes.title}>
+                <Typography variant='h6'>
+                    {int ? 'Interface Structure Model' : 'Structure Model'}
+                </Typography>
+                <IconButton onClick={() => setOpen(false)}>
+                    <CloseIcon/>
+                </IconButton>
             </DialogTitle>
             <DialogContent>
                 <Grid container justify='space-evenly' alignItems='center'>
@@ -50,20 +68,20 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
                         <Typography display='inline' variant='h5' style={{color: '#e6180d'}}>
                             &#9632;&nbsp;
                         </Typography>
-                        <Typography display='inline'>Mutant</Typography>
+                        <Typography display='inline'>Mutant Position</Typography>
                     </Grid>
                     <Grid item>
                         <Typography display='inline' variant='h5' style={{color: '#8cb2f2'}}>
                             &#9632;&nbsp;
                         </Typography>
-                        <Typography display='inline'>Mutated Protein</Typography>
+                        <Typography display='inline'>Protein of Interest</Typography>
                     </Grid>
                     {int ? (
                     <Grid item>
                         <Typography display='inline' variant='h5' style={{color: '#fa8ce6'}}>
                             &#9632;&nbsp;
                         </Typography>
-                        <Typography display='inline'>Interface Protein</Typography>
+                        <Typography display='inline'>Interface Partner</Typography>
                     </Grid>
                     ) : null}
                 </Grid>

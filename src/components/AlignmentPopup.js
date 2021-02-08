@@ -5,11 +5,24 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import { makeStyles } from '@material-ui/core/styles';
 import {json} from 'd3-fetch';
+
 const SiftAlignment = React.lazy(() => import('./SiftAlignment'));
+
+const styles = makeStyles({
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+});
 
 const AlignmentPopup = ({mut, open, setOpen, relativeSize=true, width=0.5, height=0.7}) => {
     const [seqs, setSeqs] = useState([]);
+    const classes = styles()
 
     useEffect(() => {
         let gene = mut['uniprot'] + '_' + mut['name']
@@ -27,8 +40,13 @@ const AlignmentPopup = ({mut, open, setOpen, relativeSize=true, width=0.5, heigh
 
     return(
         <Dialog open={open} onClose={() => setOpen(false)} scroll='body' fullWidth maxWidth='lg'>
-            <DialogTitle>
-                SIFT4G Alignment - {mut['uniprot']} {mut['name']}
+            <DialogTitle disableTypography className={classes.title}>
+                <Typography variant='h6'>
+                    SIFT4G Alignment - {mut['uniprot']} {mut['name']}
+                </Typography>
+                <IconButton onClick={() => setOpen(false)}>
+                    <CloseIcon/>
+                </IconButton>
             </DialogTitle>
             <DialogContent>
                 <Grid container justify='center' alignItems='center'>
