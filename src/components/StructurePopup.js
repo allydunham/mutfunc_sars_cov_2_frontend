@@ -37,12 +37,12 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
                     <Grid item xs={12}>
                         <Suspense fallback={<CircularProgress />}>
                             <ProteinViewer
-                            pdb_path={path}
-                            position={mut['position']}
-                            chain={chain}
-                            int_chain={int_chain}
-                            width={width}
-                            height={height}
+                              pdb_path={path}
+                              position={mut['position']}
+                              chain={chain}
+                              int_chain={int_chain}
+                              width={width}
+                              height={height}
                             />
                         </Suspense>
                     </Grid>
