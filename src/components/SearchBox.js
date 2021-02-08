@@ -20,7 +20,7 @@ P0DTC4 F20`
 
 const searchHelpText = `Search for SARS-CoV-2 variants
 
-Enter terms in the following formats, separated by newlines, commas (,) or semicolons (;):
+Enter terms in the following formats, split by commas (,) or semicolons (;) or on separate lines:
 - Protein names (e.g. nsp1)
 - Uniprot IDs (e.g. P0DTC7)
 - Protein positions (e.g. nsp2 1 or nsp2 A1)
@@ -29,8 +29,7 @@ Enter terms in the following formats, separated by newlines, commas (,) or semic
 
 const styles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        marginTop: '10px'
+        flexGrow: 1
     },
     item: {
         [theme.breakpoints.down('sm')]: {
@@ -68,7 +67,7 @@ const SearchBox = ({ search, setSearch, showSample }) => {
             </Grid>
             {showSample ? (
                 <Grid item className={classes.item}>
-                    <Button onClick={() => setNewSearch(sampleSearch)}>
+                    <Button variant='outlined' onClick={() => setNewSearch(sampleSearch)}>
                         Load example search
                     </Button>
                 </Grid>
