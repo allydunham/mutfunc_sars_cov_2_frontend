@@ -46,6 +46,7 @@ class ProteinViewer extends Component {
         let colourer = colourMol(this.props.position,
                                  this.props.chain,
                                  this.props.int_chain)
+        pv.mol.assignHelixSheet(structure)
         this.viewer.cartoon('protein', structure, { color: colourer });
         this.viewer.autoZoom();
     }
