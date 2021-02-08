@@ -81,16 +81,16 @@ class ProteinViewer extends Component {
     render(){
         return(
             <div
-            hidden={this.props.hidden}
-            className="pvViewer"
-            ref={this.element}
-            style={{borderColor: 'black',
-                    borderStyle: 'solid',
-                    borderWidth: 2,
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    width: this.props.width,
-                    height: this.props.height}}>
+              hidden={this.props.hidden}
+              className="pvViewer"
+              ref={this.element}
+              style={{borderColor: 'black',
+                      borderStyle: 'solid',
+                      borderWidth: 2,
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      width: this.props.width,
+                      height: this.props.height}}>
             </div>
         )
     }
