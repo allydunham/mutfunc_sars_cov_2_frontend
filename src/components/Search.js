@@ -12,7 +12,6 @@ import SearchErrors from './SearchErrors'
 import SearchSummary from './SearchSummary'
 import DetailsPanel from './DetailsPanel'
 import ResultsTable from './ResultsTable'
-import ResultsTableSmall from './ResultsTableSmall'
 
 
 const styles = makeStyles({
@@ -92,13 +91,13 @@ const DataDisplay = (props) => {
             <DetailsPanel small={small} mut={data[selectedMut]}/>
         </Grid>
         <Grid item className={classes.item}>
-            {small ? (
-            <ResultsTableSmall mutIds={searchResults} mutData={data}
-             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
-            ) : (
-            <ResultsTable mutIds={searchResults} mutData={data}
-             selectedMut={selectedMut} setSelectedMut={setSelectedMut}/>
-            )}
+            <ResultsTable
+              mutIds={searchResults}
+              mutData={data}
+              selectedMut={selectedMut}
+              setSelectedMut={setSelectedMut}
+              small={small}
+            />
         </Grid>
         </>
     )
