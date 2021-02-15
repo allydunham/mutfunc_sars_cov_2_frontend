@@ -8,9 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from "@material-ui/core/Link";
-import Tooltip from "@material-ui/core/Tooltip";
+import MuiTooltip from "@material-ui/core/Tooltip";
 import WarningIcon from '@material-ui/icons/Warning';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { sarsDisplayNames } from '../lib/sars'
 
@@ -24,7 +23,25 @@ const TableCell = withStyles({
       borderBottom: "none",
       padding: '2px'
     }
-  })(MuiTableCell);
+})(MuiTableCell);
+
+const Tooltip = withStyles({
+    tooltip: {
+        color: "black",
+        backgroundColor: "whitesmoke",
+        border: "1px solid #000",
+        borderRadius: 5
+    },
+    arrow: {
+        fontSize: 16,
+        width: 17,
+        "&::before": {
+            border: "1px solid #000",
+            backgroundColor: "#fff",
+            boxSizing: "border-box"
+        }
+    }
+})(MuiTooltip);
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -36,8 +53,25 @@ const styles = makeStyles((theme) => ({
         paddingTop: theme.spacing(1),
         paddingRight: theme.spacing(0),
         paddingBottom: theme.spacing(0)
+    },
+    hoverHeading: {
+        textDecorationStyle: 'dotted',
+        textDecorationLine: 'underline',
+        textUnderlineOffset: '2px',
+        fontWeight: 'bold',
+        '&:hover': {
+            color: 'grey'
+        }
+    },
+    baseHeading: {
+        fontWeight: 'bold'
     }
 }));
+
+// Round scores for display
+function precise(x) {
+    return Number.parseFloat(x).toPrecision(3);
+}
 
 const DetailsSection = ({title, small, children}) => {
     const mapper = small ? (
@@ -66,28 +100,59 @@ const DetailsSection = ({title, small, children}) => {
     )
 }
 
-const ConservationSection = ({mut, small}) => {
-    const [alignOpen, setAlignOpen] = useState(false);
+const DetailItem = (props) => {
+    const classes = styles()
+    const {title, value = false, tooltip = false, alert = false, alertTooltip = false} = props
+
     return(
-        <DetailsSection small={small} title='Conservation'>
-            <Typography>
-                <b>Frequency</b>: {isNaN(mut['freq']) ? 'Not Observed': mut['freq']}
-                <Tooltip title="Frequency reflects the overall frequency a variant has been observed since the start of the pandemic, across a large library of samples. It does not reflect current global or regional prevalence">
-                    <HelpOutlineIcon fontSize='inherit'/>
+        <>
+            {tooltip !== false ? (
+                <Tooltip title={tooltip} interactive arrow leaveDelay={300} enterDelay={300}>
+                    <Typography display='inline' className={classes.hoverHeading}>
+                        {title}
+                    </Typography>
                 </Tooltip>
-            </Typography>
-            <Typography>
-                <b>SIFT4G Score</b>: {isNaN(mut['sift_score']) ? 'NA': mut['sift_score']}
-            </Typography>
-            <Typography>
-                <b>SIFT4G Median IC</b>: {isNaN(mut['sift_median']) ? 'NA': mut['sift_median']}
-                &nbsp;
-                {mut['sift_median'] > 3.25 ? (
-                    <Tooltip title="Median IC scores are ideally between 2.75 and 3.5. Scores >3.25 and especially >3.5 indicate potentially poor alignment quality. Check the alignment is informative before interpreting the SIFT4G Score">
-                        <WarningIcon color='error' fontSize='inherit'/>
-                    </Tooltip>
+            ) : (
+                <Typography display='inline' className={classes.baseHeading}>
+                    {title}
+                </Typography>
+            )}
+            {value !== false ? (
+            <Typography display='inline'>
+                :&nbsp;{value}
+                {alert ? (
+                <Tooltip title={alertTooltip} interactive arrow leaveDelay={300} enterDelay={300}>
+                    {alert}
+                </Tooltip>
                 ) : null}
             </Typography>
+            ) : null}
+        </>
+    )
+}
+
+const ConservationSection = ({mut, small}) => {
+    const [alignOpen, setAlignOpen] = useState(false);
+
+    return(
+        <DetailsSection small={small} title='Conservation'>
+            <DetailItem
+              title="Frequency"
+              value={isNaN(mut['freq']) ? 'Not Observed': precise(mut['freq'])}
+              tooltip="Frequency reflects the overall frequency a variant has been observed since the start of the pandemic, across a large library of samples. It does not reflect current global or regional prevalence"
+            />
+            <DetailItem
+              title="SIFT4G Score"
+              value={isNaN(mut['sift_score']) ? 'NA': precise(mut['sift_score'])}
+              tooltip="Score generated by SIFT4G. Scores <0.05 are considered deleterious."
+            />
+            <DetailItem
+              title="SIFT4G Median IC"
+              value={isNaN(mut['sift_median']) ? 'NA': precise(mut['sift_median'])}
+              tooltip="Describes the reliability of SIFT4G scores. Median IC scores are ideally between 2.75 and 3.5. Scores >3.25 and especially >3.5 indicate potentially poor alignment quality. Check the alignment is informative before interpreting the SIFT4G Score"
+              alert={mut['sift_median'] > 3.25 ? <WarningIcon color='error' fontSize='inherit'/> : null}
+              alertTooltip="High Median IC - Check alignment quality"
+            />
             <>
             <Button
                 color='primary'
@@ -105,25 +170,32 @@ const StructureSection = ({mut, small}) => {
     const [fxOpen, setFxOpen] = useState(false);
     return(
         <DetailsSection small={small} title='Structure'>
-            <Typography>
-                <b>PTM</b>: {mut['ptm'] === "" ? 'None' : mut['ptm']}
-            </Typography>
-            <Typography>
-                <b>Template</b>: {mut['template'] === '' ? "None" : (
+            <DetailItem
+              title="PTM"
+              value={mut['ptm'] === "" ? 'None' : mut['ptm']}
+              tooltip="Post-translational modification"
+            />
+            <DetailItem
+              title="Template"
+              value={mut['template'] === '' ? "None" : (
                 <Link
                     href={"https://www.ebi.ac.uk/pdbe/entry/pdb/" + mut['template'].split('.')[0]}
                     target="_blank"
                     rel="noopener noreferrer">
                     {mut['template']}
                 </Link>
-                )}
-            </Typography>
-            <Typography>
-                <b>Rel. Surface Accessibility</b>: {isNaN(mut['relative_surface_accessibility']) ? 'NA': mut['relative_surface_accessibility']}
-            </Typography>
-            <Typography>
-                <b>FoldX &Delta;&Delta;G</b>: {isNaN(mut['foldx_ddg']) ? 'NA': mut['foldx_ddg']}
-            </Typography>
+              )}
+            />
+            <DetailItem
+              title="Surface Accessibility"
+              value={isNaN(mut['relative_surface_accessibility']) ? 'NA': precise(mut['relative_surface_accessibility'])}
+              tooltip="All atom relative residue surface accessibility"
+            />
+            <DetailItem
+              title={<>FoldX &Delta;&Delta;G</>}
+              value={isNaN(mut['foldx_ddg']) ? 'NA': precise(mut['foldx_ddg'])}
+              tooltip="Predicted change in the protein's folding gibbs free energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
+            />
             <>
                 <Button
                     color='primary'
@@ -137,36 +209,29 @@ const StructureSection = ({mut, small}) => {
     )
 }
 
-const getInterfaceNumString = (change) => {
-    switch (Math.sign(change)){
-        case 0:
-            return('No change in interface residues')
-        case 1:
-            return(change + ' interface residues gained')
-        case -1:
-            return(Math.abs(change) + ' interface residues lost')
-        default:
-            return('Unknown interface residue count change')
-    }
-}
-
 const Interface = ({mut, int, small}) => {
     const [intOpen, setIntOpen] = useState(false);
 
     return(
     <DetailsSection small={small}>
-        <Typography>
-            <b>Partner</b>: <Link href={"https://www.uniprot.org/uniprot/" + int['uniprot']} target="_blank" rel="noopener noreferrer">{int['uniprot']}</Link> {int['name'] in sarsDisplayNames ? sarsDisplayNames[int['name']] : int['name']}
-        </Typography>
-        <Typography>
-            <b>Template</b>: <Link href={"https://www.ebi.ac.uk/pdbe/entry/pdb/" + int['template'].split('.')[0]} target="_blank" rel="noopener noreferrer">{int['template']}</Link>
-        </Typography>
-        <Typography>
-            <b>Interface &Delta;&Delta;G</b>: {isNaN(int['diff_interaction_energy']) ? 'NA': int['diff_interaction_energy']}
-        </Typography>
-        <Typography>
-            {getInterfaceNumString(int['diff_interface_residues'])}
-        </Typography>
+        <DetailItem
+          title="Partner"
+          value={<><Link href={"https://www.uniprot.org/uniprot/" + int['uniprot']} target="_blank" rel="noopener noreferrer">{int['uniprot']}</Link> {int['name'] in sarsDisplayNames ? sarsDisplayNames[int['name']] : int['name']}</>}
+        />
+        <DetailItem
+          title="Template"
+          value={<Link href={"https://www.ebi.ac.uk/pdbe/entry/pdb/" + int['template'].split('.')[0]} target="_blank" rel="noopener noreferrer">{int['template']}</Link>}
+        />
+        <DetailItem
+          title={<>Interface &Delta;&Delta;G</>}
+          value={isNaN(int['diff_interaction_energy']) ? 'NA': precise(int['diff_interaction_energy'])}
+          tooltip="Change in interface binding gibbs free energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
+        />
+        <DetailItem
+          title="Residue Change"
+          value={isNaN(int['diff_interface_residues']) ? 'NA': int['diff_interface_residues']}
+          tooltip="Change in the number of residues FoldX predicts contribute towards the interface"
+        />
         <>
             <Button
                     color='primary'
@@ -191,7 +256,7 @@ const InterfaceSection = ({mut, small}) => {
         <DetailsSection small={small} title='Interfaces'/>
         {mut['interfaces'].length === 0 ? (
             <TableRow>
-                <TableCell colSpan={small ? 1 : 5} align="center">
+                <TableCell colSpan={small ? 1 : 5}>
                     <Typography>
                         No interfaces in this dataset
                     </Typography>
@@ -211,18 +276,18 @@ const ExperimentSection = ({mut, small}) => {
     }
     return(
         <DetailsSection small={small} title='Experimental Results'>
-            <Typography variant='subtitle1'>
-                Antibody Escape Spike DMS <Link href="https://doi.org/10.1016/j.chom.2020.11.007" target="_blank" rel="noopener noreferrer">(Greaney et al. 2021)</Link>
-            </Typography>
-            <Typography>
-                <b>Escape Proportion</b>
-            </Typography>
-            <Typography>
-                <b>Mean</b>: {isNaN(mut['mut_escape_mean']) ? 'NA': mut['mut_escape_mean']}
-            </Typography>
-            <Typography>
-                <b>Max</b>: {isNaN(mut['mut_escape_max']) ? 'NA': mut['mut_escape_max']}
-            </Typography>
+            <DetailItem
+              title="Antibody Escape DMS"
+              tooltip={<><Link href="https://doi.org/10.1016/j.chom.2020.11.007" target="_blank" rel="noopener noreferrer">Greaney et al. (2021)</Link> performed a deep mutational scan testing the proportional antibody escape of each Spike variant against a range of antibodies.</>}
+            />
+            <DetailItem
+              title="Mean Escape"
+              value={isNaN(mut['mut_escape_mean']) ? 'NA': precise(mut['mut_escape_mean'])}
+            />
+            <DetailItem
+              title="Max Escape"
+              value={isNaN(mut['mut_escape_max']) ? 'NA': precise(mut['mut_escape_max'])}
+            />
         </DetailsSection>
     )
 }
