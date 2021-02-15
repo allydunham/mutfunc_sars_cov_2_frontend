@@ -203,7 +203,7 @@ export function searchMutations(search, muts){
                       .sort(compareMutIds)
         }
 
-        console.log('Serach Complete')
+        console.log('Search Complete')
         resolve({results: [...new Set(mutIDs)], errors: errors});
     })
 }
