@@ -49,7 +49,7 @@ const AlignmentPopup = ({mut, open, setOpen, relativeSize=true, width=0.5, heigh
                 </IconButton>
             </DialogTitle>
             <DialogContent>
-                <Grid container justify='center' alignItems='center'>
+                <Grid container justify='center' alignItems='center' spacing={2}>
                     <Grid item xs={12}>
                         <Typography>
                             {seqs.length} aligned sequences. Click and drag to scroll the alignment.
