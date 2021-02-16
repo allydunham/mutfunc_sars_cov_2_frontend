@@ -19,7 +19,7 @@ const SiftAlignmnet = ({seqs, hidden, width=600, height=500}) => {
     return(
         <div hidden={hidden}>
             {seqs.length > 0 ? (
-                <MSAViewer msaStore={msaStore}>
+                <MSAViewer sequences={seqs} msaStore={msaStore}>
                     <div style={{display: "flex"}} >
                         <div>
                             <br/>
