@@ -194,7 +194,7 @@ const StructureSection = ({mut, small}) => {
             <DetailItem
               title={<>FoldX &Delta;&Delta;G</>}
               value={isNaN(mut['foldx_ddg']) ? 'NA': precise(mut['foldx_ddg'])}
-              tooltip="Predicted change in the protein's folding gibbs free energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
+              tooltip="Predicted change in the protein's folding Gibbs Free Energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
             />
             <>
                 <Button
@@ -225,7 +225,7 @@ const Interface = ({mut, int, small}) => {
         <DetailItem
           title={<>Interface &Delta;&Delta;G</>}
           value={isNaN(int['diff_interaction_energy']) ? 'NA': precise(int['diff_interaction_energy'])}
-          tooltip="Change in interface binding gibbs free energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
+          tooltip="Change in interface binding Gibbs Free Energy change caused by this mutation. Values greater than 1 are considered significantly destabilising and those less than -1 stabilising."
         />
         <DetailItem
           title="Residue Change"
