@@ -87,7 +87,8 @@ const DataDisplay = (props) => {
         <Grid item className={classes.item}>
             <SearchSummary searchResults={searchResults} data={data}/>
         </Grid>
-        <Grid item id='details' className={classes.item}>
+        <Grid item id='detailsScrollPoint'></Grid>
+        <Grid item className={classes.item}>
             <DetailsPanel small={small} mut={data[selectedMut]}/>
         </Grid>
         <Grid item className={classes.item}>

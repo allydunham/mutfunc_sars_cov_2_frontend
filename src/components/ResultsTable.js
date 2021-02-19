@@ -123,7 +123,7 @@ const MutRow = ({mutId, mutData, selectedMut, setSelectedMut, small}) => {
           selected={mutId === selectedMut}
           onClick={(event) => {
               setSelectedMut(mutId)
-              document.getElementById('details').scrollIntoView({behavior: 'smooth'})
+              document.getElementById('detailsScrollPoint').scrollIntoView({behavior: 'smooth'})
           }}
           className={classes.mutRow}
         >
