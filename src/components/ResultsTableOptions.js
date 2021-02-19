@@ -9,6 +9,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import { LabeledMutBadge } from './MutBadges';
 
@@ -35,6 +38,11 @@ const styles = makeStyles((theme) => ({
     },
     pageButton: {
         flexShrink: 0
+    },
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     }
 }));
 
@@ -58,8 +66,13 @@ const ResultsTableOptions = ({options, setOptions}) => {
             Table Options
         </Button>
         <Dialog open={open} onClose={() => setOpen(false)} scroll='body' fullWidth maxWidth='sm'>
-            <DialogTitle>
-                Table Options
+            <DialogTitle disableTypography className={classes.title}>
+                <Typography variant='h6'>
+                    Table Options
+                </Typography>
+                <IconButton onClick={() => setOpen(false)}>
+                    <CloseIcon/>
+                </IconButton>
             </DialogTitle>
             <DialogContent>
                 <FormControl fullWidth>
