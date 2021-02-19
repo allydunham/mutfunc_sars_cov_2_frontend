@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles';
+import { sarsDisplayNames } from '../lib/sars';
 
 const ProteinViewer = React.lazy(() => import('./ProteinViewer'))
 
@@ -26,9 +27,13 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
     let path = ''
     let int_chain = ''
 
+    let name = sarsDisplayNames[mut['name']]
+    let int_name = ''
+
     if (int){
         [template, chain, int_chain] = int['template'].split('.')
         path = [process.env.PUBLIC_URL, 'data/pdb_interface/', template, '.pdb'].join('')
+        int_name = int['name'] in sarsDisplayNames ? sarsDisplayNames[int['name']] : int['name']
     } else {
         [template, chain] = mut['template'].split('.')
         path = [process.env.PUBLIC_URL, 'data/pdb_foldx/', mut['uniprot'], '_',
@@ -44,7 +49,7 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
         <Dialog open={open} onClose={() => setOpen(false)} scroll='body' fullWidth maxWidth='lg'>
             <DialogTitle disableTypography className={classes.title}>
                 <Typography variant='h6'>
-                    {int ? 'Interface Structure Model' : 'Structure Model'}
+                    {int ? 'Interface Structure Model: ' + name + ' - ' + int_name : 'Structure Model: ' + sarsDisplayNames[mut['name']]}
                 </Typography>
                 <IconButton onClick={() => setOpen(false)}>
                     <CloseIcon/>
@@ -52,6 +57,11 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
             </DialogTitle>
             <DialogContent>
                 <Grid container justify='space-evenly' alignItems='center'>
+                    <Grid item xs={6}>
+                        <Typography>
+                            Drag to rotate the protein and use the scroll wheel or pinch with two fingers to zoom.
+                        </Typography>
+                    </Grid>
                     <Grid item xs={12}>
                         <Suspense fallback={<CircularProgress />}>
                             <ProteinViewer
@@ -74,14 +84,14 @@ const StructurePopup = ({mut, int, open, setOpen, relativeSize=true, width=0.5, 
                         <Typography display='inline' variant='h5' style={{color: '#8cb2f2'}}>
                             &#9632;&nbsp;
                         </Typography>
-                        <Typography display='inline'>Protein of Interest</Typography>
+                        <Typography display='inline'>{name}</Typography>
                     </Grid>
                     {int ? (
                     <Grid item>
                         <Typography display='inline' variant='h5' style={{color: '#fa8ce6'}}>
                             &#9632;&nbsp;
                         </Typography>
-                        <Typography display='inline'>Interface Partner</Typography>
+                        <Typography display='inline'>{int_name}</Typography>
                     </Grid>
                     ) : null}
                 </Grid>
