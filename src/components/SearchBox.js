@@ -38,6 +38,9 @@ const styles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             width: "66%"
         }
+    },
+    textBox: {
+        marginTop: '0px'
     }
 }));
 
@@ -52,7 +55,26 @@ const SearchBox = ({ search, setSearch, showSample }) => {
     }
 
     return(
-        <Grid container spacing={2} direction="column" alignItems="center" className={classes.root}>
+        <Grid container direction="column" alignItems="center" className={classes.root}>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              className={classes.item}
+            >
+                {showSample ? (
+                    <Grid item>
+                        <Button size='small' onClick={() => setNewSearch(sampleSearch)}>
+                            Load Example Search
+                        </Button>
+                    </Grid>
+                ) : null}
+                <Grid item>
+                    <Button size='small' onClick={() => setNewSearch('')}>
+                        Clear
+                    </Button>
+                </Grid>
+            </Grid>
             <Grid item className={classes.item}>
                 <TextField
                     value={newSearch}
@@ -63,15 +85,9 @@ const SearchBox = ({ search, setSearch, showSample }) => {
                     margin="normal"
                     rows={8}
                     fullWidth
+                    className={classes.textBox}
                 />
             </Grid>
-            {showSample ? (
-                <Grid item className={classes.item}>
-                    <Button variant='outlined' onClick={() => setNewSearch(sampleSearch)}>
-                        Load example search
-                    </Button>
-                </Grid>
-            ) : null}
             <Grid item className={classes.item}>
                 <Button
                     onClick={processSearch}
