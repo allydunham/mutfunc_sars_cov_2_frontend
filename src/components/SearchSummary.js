@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -52,12 +53,17 @@ const SearchSummary = ({searchResults, data}) => {
                 sig = true
                 c['interface'] += 1
             }
+            if (deleterious.antibody(mut)){
+                sig = true
+                c['antibody'] += 1
+            }
             if (sig){
                 sig = true
                 c['significant'] += 1
             }
             return(c)
-        }, {observed: 0, frequent: 0, sift: 0, foldx: 0, ptm: 0, interface: 0, significant: 0}))
+        }, {observed: 0, frequent: 0, sift: 0, foldx: 0, ptm: 0, interface: 0,
+            antibody: 0, significant: 0}))
     }, [results]);
 
     return(
@@ -70,7 +76,7 @@ const SearchSummary = ({searchResults, data}) => {
         >
             <Grid item xs={12}>
                 <Typography align='left' variant='subtitle1' display='inline'>
-                    Found {results.length} variants, of which {counts['significant']} have significant predicted effects.<br/>SIFT4G and FoldX scores are computational predictions and must be interpretted with care (see "help")<br/>
+                    Found {results.length} variants, of which {counts['significant']} have significant predicted effects.<br/>SIFT4G and FoldX scores are computational predictions and must be interpretted with care (see "<RouterLink to='/help'>help</RouterLink>")<br/>
                     <Link component='button' onClick={() => setShowDetails(!showDetails)}>
                         {showDetails ? 'Hide details' : 'Show details'}
                     </Link>
@@ -131,7 +137,7 @@ const SearchSummary = ({searchResults, data}) => {
                         </TableRow>
                         <TableRow>
                             <TableCell align="right">
-                                {deleterious.ptmText}:
+                                Post-translational modifications:
                             </TableCell>
                             <TableCell align="left">
                                 {counts['ptm']}
@@ -139,10 +145,18 @@ const SearchSummary = ({searchResults, data}) => {
                         </TableRow>
                         <TableRow>
                             <TableCell align="right">
-                                {deleterious.interfacesText}:
+                                Present in a protein interface:
                             </TableCell>
                             <TableCell align="left">
                                 {counts['interface']}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell align="right">
+                                {deleterious.antibodyText}:
+                            </TableCell>
+                            <TableCell align="left">
+                                {counts['antibody']}
                             </TableCell>
                         </TableRow>
                     </TableBody>
