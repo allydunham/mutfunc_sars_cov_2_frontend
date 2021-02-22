@@ -49,7 +49,7 @@ const Help = () => {
                 Additional breakdowns of all statistics, for example the factors contributing to FoldX's &Delta;&Delta;G statistic, are available in the full dataset.
                 Most features work on smaller screens/windows but the interface is geared towards for desktop so use on small screen may not be as smooth.
             </Typography>
-            <Typography variant='h5' className={classes.heading}>
+            <Typography variant='h5' id='search' className={classes.heading}>
                 Searching Variants
             </Typography>
             <Typography component={'span'} className={classes.content}>
@@ -70,7 +70,7 @@ const Help = () => {
                     <li>Gene names and Uniprot IDs are both case insensitive.</li>
                 </ul>
             </Typography>
-            <Typography variant='h5' className={classes.heading}>
+            <Typography variant='h5' id='results' className={classes.heading}>
                 Results Table
             </Typography>
             <Typography component={'span'} className={classes.content}>
@@ -112,13 +112,13 @@ const Help = () => {
                 The predictions column shows which factors are predicted to be significant.
                 Clicking on a row opens a panel with additional details on predictions for that variant.
             </Typography>
-            <Typography variant='h5' className={classes.heading}>
+            <Typography variant='h5' id='predictions' className={classes.heading}>
                 Predictions
             </Typography>
             <Typography className={classes.content}>
                 Three categories of predictions and measurement are shown in the details panel of each variant: conservation, structure and interfaces.
             </Typography>
-            <Typography variant='h6' className={classes.subheading}>
+            <Typography variant='h6' id='conservation' className={classes.subheading}>
                 Conservation
             </Typography>
             <Typography component={'span'} className={classes.content}>
@@ -132,7 +132,7 @@ const Help = () => {
 
                 SIFT4G scores are sometimes generated from few or closely related sequences and need to be interpretted with caution, particularly when the median IC score is greater than 3.5. The optimal range is 2.75 &le; Median IC &le; 3.5. Viewing the alignment can help with interpretation, for example if the alignments has few very similar sequences the SIFT4G score may not be informative.
             </Typography>
-            <Typography variant='h6' className={classes.subheading}>
+            <Typography variant='h6' id='structure' className={classes.subheading}>
                 Structure
             </Typography>
             <Typography component={'span'} className={classes.content}>
@@ -150,7 +150,7 @@ const Help = () => {
                 This measures the predicted stabilisation (&lt;0) or destabilisation (&gt;0) of the variant, with absolute values greater than one being considered significant.
                 The Naccess prediction measures the relative percentage of the residue surface accessible to solvent compared to an extended Ala - X - Ala conformation.
             </Typography>
-            <Typography variant='h6' className={classes.subheading}>
+            <Typography variant='h6' id='interfaces' className={classes.subheading}>
                 Interfaces
             </Typography>
             <Typography className={classes.content}>
@@ -167,7 +167,7 @@ const Help = () => {
                     {config.complexes.map((i) => <li key={i}>{i}</li>)}
                 </ul>
             </Typography>
-            <Typography variant='h6' className={classes.subheading}>
+            <Typography variant='h6' id='experiments' className={classes.subheading}>
                 Experimental Results
             </Typography>
             <Typography component={'span'} className={classes.content}>
