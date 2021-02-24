@@ -43,7 +43,7 @@ const About = () => {
             </Typography>
             <Typography className={classes.text}>
                 <br/>
-                Dunham A., Beltrao P. (2021) A resource of missense variant effect predictions and functional annotations for SARS-CoV-2. BioRxiv <Link href="https://swissmodel.expasy.org/" target="_blank" rel="noopener noreferrer">https://www.biorxiv.org/</Link>
+                Alistair Dunham, Gwendolyn M Jang, Monita Muralidharan, Danielle Swaney &amp; Pedro Beltrao. 2021. A missense variant effect prediction and annotation resource for SARS-CoV-2. BioRxiv doi: <Link href="https://www.biorxiv.org/" target="_blank" rel="noopener noreferrer">https://www.biorxiv.org/</Link>
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Data Sources
