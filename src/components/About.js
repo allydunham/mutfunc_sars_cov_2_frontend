@@ -41,6 +41,9 @@ const About = () => {
             <Typography variant='h5' className={classes.heading}>
                 Citation
             </Typography>
+            <Typography className={classes.text}>
+
+            </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Data Sources
             </Typography>
@@ -89,21 +92,10 @@ const About = () => {
                       className={classes.image}
                     />
                 </Link>
-                <Link
-                  href="https://www.gisaid.org/"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                    <img
-                      src={process.env.PUBLIC_URL + 'images/gisaid_logo.png'}
-                      alt='gisaid-logo'
-                      height='75px'
-                      className={classes.image}
-                    />
-                </Link>
             </div>
             <br/>
             <Typography className={classes.text}>
-                The variant alignment used to calculate frequencies is from the {config.vcf_version} release of <Link href="https://github.com/roblanf/sarscov2phylo" target="_blank" rel="noopener noreferrer">sarscov2phylo</Link>
+                The variant alignment used to calculate frequencies is based on that from {config.vcf_version} release of <Link href="https://github.com/roblanf/sarscov2phylo" target="_blank" rel="noopener noreferrer">sarscov2phylo</Link>, pruned to only include public sequences.
             </Typography>
             <br/>
             <Typography className={classes.text}>
@@ -197,6 +189,13 @@ const About = () => {
                   startIcon={<MailOutlineIcon/>}>
                     ally@ebi.ac.uk
                 </Button>
+            </Typography>
+            <Typography variant='h5' className={classes.heading}>
+                Disclaimer
+            </Typography>
+            <Typography className={classes.text}>
+                <br/>
+                We provide the data and software in good faith, but make no warranty, express or implied, nor assume any legal liability or responsibility for any purpose for which they are used.
             </Typography>
         </div>
     )
