@@ -69,8 +69,8 @@ const Download = () => {
                     <li>wt: WT Amino Acid</li>
                     <li>mut: Mutant Amino Acid</li>
                     <li>overall: Observed frequency across all samples</li>
-                    <li>last90days: Observed frequency across samples from the last 90 days</li>
-                    <li>NorthAfrica-Oceania: Observed frequency across samples from the specified region</li>
+                    <li>last[90/180]days: Observed frequency across samples from the last 90/180 days</li>
+                    <li>Caribean-WestAsia: Observed frequency across samples from the specified region. The UK is assigned its own region because such a large proportion of sequences come from there, meaning it would otherwise dominate the Europe regional frequencies.</li>
                 </ul>
             </Typography>
             <Typography variant='h5' className={classes.heading}>
