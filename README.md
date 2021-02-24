@@ -1,7 +1,7 @@
 # Mutfunc: SARS-CoV-2 Frontend
 
-This repository contains the code for the Mutfunc: SARS-CoV-2 Mutfunc website.
-The project has been published in PAPER, where the methods and dataset are described.
+This repository contains the code for the [Mutfunc: SARS-CoV-2 website](http://sars.mutfunc.com).
+The project is available as a [BioRxiv preprint](http://sars.mutfunc.com), where the methods and dataset are described.
 The pipeline code is in a separate [repository](https://github.com/allydunham/mutfunc_sars_cov_2).
 
 The site is made with [Reactjs](https://reactjs.org/) and [Material UI](https://material-ui.com/), using
@@ -12,4 +12,3 @@ The project uses three main branches:
 * master - The most recent WIP updates and features
 * dev - Version currently being run on the test server
 * prod - Version currently on the live server
-
