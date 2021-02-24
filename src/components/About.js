@@ -42,7 +42,8 @@ const About = () => {
                 Citation
             </Typography>
             <Typography className={classes.text}>
-
+                <br/>
+                Dunham A., Beltrao P. (2021) A resource of missense variant effect predictions and functional annotations for SARS-CoV-2. BioRxiv <Link href="https://swissmodel.expasy.org/" target="_blank" rel="noopener noreferrer">https://www.biorxiv.org/</Link>
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Data Sources
@@ -95,11 +96,11 @@ const About = () => {
             </div>
             <br/>
             <Typography className={classes.text}>
-                The variant alignment used to calculate frequencies is based on that from {config.vcf_version} release of <Link href="https://github.com/roblanf/sarscov2phylo" target="_blank" rel="noopener noreferrer">sarscov2phylo</Link>, pruned to only include public sequences.
+                The variant alignment used to calculate frequencies is based on that from the {config.vcf_version} release of <Link href="https://github.com/roblanf/sarscov2phylo" target="_blank" rel="noopener noreferrer">sarscov2phylo</Link>, pruned to only include public sequences.
             </Typography>
             <br/>
             <Typography className={classes.text}>
-                Phosphorylation data was sourced from <Link href="https://europepmc.org/article/med/32645325" target="_blank" rel="noopener noreferrer"> Bouhaddou et al. (2020) </Link>
+                Phosphorylation data was sourced from <Link href="https://doi.org/10.1016/j.cell.2020.06.034" target="_blank" rel="noopener noreferrer">Bouhaddou et al. (2020)</Link>. Antibody evasion deep mutational scanning results come from <Link href="https://doi.org/10.1016/j.chom.2020.11.007" target="_blank" rel="noopener noreferrer">Greaney et al. (2021)</Link>.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Tools
@@ -168,6 +169,13 @@ const About = () => {
                 Full technical details of the site are on a separate <Link href="https://github.com/allydunham/mutfunc_sars_cov_2_frontend" target="_blank" rel="noopener noreferrer">Github repository</Link>.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
+                Disclaimer
+            </Typography>
+            <Typography className={classes.text}>
+                <br/>
+                We provide the data and software in good faith, but make no warranty, express or implied, nor assume any legal liability or responsibility for any purpose for which they are used.
+            </Typography>
+            <Typography variant='h5' className={classes.heading}>
                 Contact
             </Typography>
             <Typography className={classes.content}>
@@ -189,13 +197,23 @@ const About = () => {
                   startIcon={<MailOutlineIcon/>}>
                     ally@ebi.ac.uk
                 </Button>
-            </Typography>
-            <Typography variant='h5' className={classes.heading}>
-                Disclaimer
-            </Typography>
-            <Typography className={classes.text}>
                 <br/>
-                We provide the data and software in good faith, but make no warranty, express or implied, nor assume any legal liability or responsibility for any purpose for which they are used.
+                <b>Pedro Beltrao</b> - <Button
+                  className={classes.button}
+                  href='https://twitter.com/pedrobeltrao'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<TwitterIcon/>}>
+                    @pedrobeltrao
+                </Button>
+                <Button
+                  className={classes.button}
+                  href='mailto:pbeltrao@ebi.ac.uk'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<MailOutlineIcon/>}>
+                    pbeltrao@ebi.ac.uk
+                </Button>
             </Typography>
         </div>
     )
