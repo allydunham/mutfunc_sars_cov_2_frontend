@@ -28,8 +28,8 @@ const styles = makeStyles((theme) => ({
         }
     },
     image: {
-        maxWidth: '100%',
-        maxHeight: '100%'
+        maxWidth: '80%',
+        maxHeight: '80%'
     }
 }));
 
@@ -43,13 +43,11 @@ const Home = ({search, setSearch}) => {
     const classes = styles();
 
     return(
-        <Grid container spacing={8} direction="column" alignItems="center" className={classes.root}>
+        <Grid container spacing={5} direction="column" alignItems="center" className={classes.root}>
             <Grid item className={classes.textItem}>
                 <Typography variant='h6'>Welcome to Mutfunc: SARS-CoV-2</Typography>
                 <Typography>
-                    Computational predictions and annotations for all possible SARS-CoV-2 amino acid substitutions.
-                    <br/>
-                    Search variants to browse predictions and annotations and identify potential functional effects. Predictions are derived from evolutionary conservation, protein and complex structures and experiments (see <Link to="/help">Help</Link> for details).
+                    Search predictions and annotations for all possible SARS-CoV-2 amino acid substitution to identify potential functional effects. Predictions are derived from evolutionary conservation, protein and complex structures and experiments (see <Link to="/help">Help</Link> for details).
                 </Typography>
             </Grid>
             <Grid
@@ -57,15 +55,15 @@ const Home = ({search, setSearch}) => {
               item
               direction="row"
               justify="center"
-              spacing={2}
+              spacing={0}
               className={classes.imageItem}
             >
                 <Grid item xs={6} md={3}>
                     <HashLink to='/help#conservation' scroll={el => scrollWithOffset(el)}>
                         <img
-                        src={process.env.PUBLIC_URL + 'images/conservation.png'}
-                        alt='conservation'
-                        className={classes.image}
+                          src={process.env.PUBLIC_URL + 'images/conservation.png'}
+                          alt='conservation'
+                          className={classes.image}
                         />
                     </HashLink>
                     <Typography align='center'>Conservation</Typography>
@@ -73,9 +71,9 @@ const Home = ({search, setSearch}) => {
                 <Grid item xs={6} md={3}>
                     <HashLink to='/help#structure' scroll={el => scrollWithOffset(el)}>
                         <img
-                        src={process.env.PUBLIC_URL + 'images/structure.png'}
-                        alt='protein-structures'
-                        className={classes.image}
+                          src={process.env.PUBLIC_URL + 'images/structure.png'}
+                          alt='protein-structures'
+                          className={classes.image}
                         />
                     </HashLink>
                     <Typography align='center'>Protein Structures</Typography>
@@ -83,9 +81,9 @@ const Home = ({search, setSearch}) => {
                 <Grid item xs={6} md={3}>
                     <HashLink to='/help#interfaces' scroll={el => scrollWithOffset(el)}>
                         <img
-                        src={process.env.PUBLIC_URL + 'images/complex.png'}
-                        alt='protein-complexes'
-                        className={classes.image}
+                          src={process.env.PUBLIC_URL + 'images/complex.png'}
+                          alt='protein-complexes'
+                          className={classes.image}
                         />
                     </HashLink>
                     <Typography align='center'>Protein Complexes</Typography>
@@ -93,9 +91,9 @@ const Home = ({search, setSearch}) => {
                 <Grid item xs={6} md={3}>
                     <HashLink to='/help#experiments' scroll={el => scrollWithOffset(el)}>
                         <img
-                        src={process.env.PUBLIC_URL + 'images/annotation.png'}
-                        alt='experimental-annotation'
-                        className={classes.image}
+                          src={process.env.PUBLIC_URL + 'images/annotation.png'}
+                          alt='experimental-annotation'
+                          className={classes.image}
                         />
                     </HashLink>
                     <Typography align='center'>Experimental Annotation</Typography>
