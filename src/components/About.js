@@ -43,7 +43,7 @@ const About = () => {
             </Typography>
             <Typography className={classes.text}>
                 <br/>
-                Alistair Dunham, Gwendolyn M Jang, Monita Muralidharan, Danielle Swaney &amp; Pedro Beltrao. 2021. A missense variant effect prediction and annotation resource for SARS-CoV-2. BioRxiv doi: <Link href="https://www.biorxiv.org/" target="_blank" rel="noopener noreferrer">https://www.biorxiv.org/</Link>
+                Alistair Dunham, Gwendolyn M Jang, Monita Muralidharan, Danielle Swaney &amp; Pedro Beltrao. 2021. A missense variant effect prediction and annotation resource for SARS-CoV-2. <Link href="https://www.biorxiv.org/content/10.1101/2021.02.24.432721v1" target="_blank" rel="noopener noreferrer">bioRxiv 2021.02.24.432721</Link> doi: <Link href="https://doi.org/10.1101/2021.02.24.432721" target="_blank" rel="noopener noreferrer">https://doi.org/10.1101/2021.02.24.432721</Link>
             </Typography>
             <Typography variant='h5' className={classes.heading}>
                 Data Sources
