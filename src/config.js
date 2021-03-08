@@ -1,6 +1,6 @@
 // Store site globals in a centralised location
 export default {
-    'version': '1.0.0',
+    'version': '1.0.1',
     'update_date': '20/11/2020',
     'vcf_version': '01/02/2021',
     'complexes': ['S - ACE2', 'S homotrimer', 'Nucleocapsid homodimer',
@@ -11,5 +11,6 @@ export default {
                   'S RBD - REGN Antibody (6XDG)',
                   'S Open State RBD - H014 Fab Antibody (7CAI)',
                   'S Open State RBD - H014 Fab Antibody (7CAK)'
-                 ]
+                 ],
+    'analytics_id': 'UA-191020976-1'
 }

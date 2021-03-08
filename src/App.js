@@ -2,6 +2,8 @@ import React from 'react';
 import DataController from './components/DataController';
 import TitleBar from './components/TitleBar';
 import Footer from './components/Footer';
+import GoogleAnalyticsWrapper from './components/GoogleAnalyticsWrapper';
+import CookieBanner from './components/CookieBanner';
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,11 +26,14 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Router>
-                <TitleBar/>
-                <div className={classes.main}>
-                    <DataController/>
-                </div>
-                <Footer/>
+                <GoogleAnalyticsWrapper>
+                    <TitleBar/>
+                    <div className={classes.main}>
+                        <DataController/>
+                    </div>
+                    <Footer/>
+                </GoogleAnalyticsWrapper>
+                <CookieBanner/>
             </Router>
         </ThemeProvider>
   );
