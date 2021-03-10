@@ -10,11 +10,12 @@ function GoogleAnalyticsWrapper({
   gaId = config.analytics_id,
   children,
   debug = false,
+  testMode = false
 }) {
   const history = useHistory();
 
   useEffect(() => {
-    ReactGA.initialize(gaId, { debug: debug, testMode: true });
+    ReactGA.initialize(gaId, { debug: debug, testMode: testMode });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

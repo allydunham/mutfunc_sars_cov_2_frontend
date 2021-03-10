@@ -26,7 +26,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Router>
-                <GoogleAnalyticsWrapper>
+                <GoogleAnalyticsWrapper testMode={true}>
                     <TitleBar/>
                     <div className={classes.main}>
                         <DataController/>
