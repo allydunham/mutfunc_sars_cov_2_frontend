@@ -14,7 +14,6 @@ const CookieBanner = () => {
             color: "#fff",
             borderRadius: '6px'
           }}
-          debug
         >
             <Typography>
                 This website requires cookies and the limited processing of your personal data in order to function. By using the site you are agreeing to this as outlined in the EBI <Link href='https://www.ebi.ac.uk/data-protection/privacy-notice/embl-ebi-public-website' target='_blank'>Privacy Notice</Link> and <Link href='https://www.ebi.ac.uk/about/terms-of-use/'>Terms of Use.</Link>
