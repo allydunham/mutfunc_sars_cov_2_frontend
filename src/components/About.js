@@ -46,6 +46,46 @@ const About = () => {
                 Alistair Dunham, Gwendolyn M Jang, Monita Muralidharan, Danielle Swaney &amp; Pedro Beltrao. 2021. A missense variant effect prediction and annotation resource for SARS-CoV-2. bioRxiv: <Link href="https://www.biorxiv.org/content/10.1101/2021.02.24.432721v1" target="_blank" rel="noopener noreferrer">2021.02.24.432721</Link> doi: <Link href="https://doi.org/10.1101/2021.02.24.432721" target="_blank" rel="noopener noreferrer">https://doi.org/10.1101/2021.02.24.432721</Link>
             </Typography>
             <Typography variant='h5' className={classes.heading}>
+                Contact
+            </Typography>
+            <Typography className={classes.content}>
+                Issues can be submitted through the <Link href="https://github.com/allydunham/covid19_mutfunc/issues" target="_blank" rel="noopener noreferrer">Github repository</Link>.
+                <br/>
+                <b>Alistair Dunham</b> - <Button
+                  className={classes.button}
+                  href='https://twitter.com/Ally_Dunham'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<TwitterIcon/>}>
+                    @Ally_Dunham
+                </Button>
+                <Button
+                  className={classes.button}
+                  href='mailto:ally@ebi.ac.uk'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<MailOutlineIcon/>}>
+                    ally@ebi.ac.uk
+                </Button>
+                <br/>
+                <b>Pedro Beltrao</b> - <Button
+                  className={classes.button}
+                  href='https://twitter.com/pedrobeltrao'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<TwitterIcon/>}>
+                    @pedrobeltrao
+                </Button>
+                <Button
+                  className={classes.button}
+                  href='mailto:pbeltrao@ebi.ac.uk'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<MailOutlineIcon/>}>
+                    pbeltrao@ebi.ac.uk
+                </Button>
+            </Typography>
+            <Typography variant='h5' className={classes.heading}>
                 Data Sources
             </Typography>
             <div className={classes.imageContainer}>
@@ -176,44 +216,11 @@ const About = () => {
                 We provide the data and software in good faith, but make no warranty, express or implied, nor assume any legal liability or responsibility for any purpose for which they are used.
             </Typography>
             <Typography variant='h5' className={classes.heading}>
-                Contact
+                Privacy
             </Typography>
-            <Typography className={classes.content}>
-                Issues can be submitted through the <Link href="https://github.com/allydunham/covid19_mutfunc/issues" target="_blank" rel="noopener noreferrer">Github repository</Link>.
+            <Typography className={classes.text}>
                 <br/>
-                <b>Alistair Dunham</b> - <Button
-                  className={classes.button}
-                  href='https://twitter.com/Ally_Dunham'
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<TwitterIcon/>}>
-                    @Ally_Dunham
-                </Button>
-                <Button
-                  className={classes.button}
-                  href='mailto:ally@ebi.ac.uk'
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<MailOutlineIcon/>}>
-                    ally@ebi.ac.uk
-                </Button>
-                <br/>
-                <b>Pedro Beltrao</b> - <Button
-                  className={classes.button}
-                  href='https://twitter.com/pedrobeltrao'
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<TwitterIcon/>}>
-                    @pedrobeltrao
-                </Button>
-                <Button
-                  className={classes.button}
-                  href='mailto:pbeltrao@ebi.ac.uk'
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<MailOutlineIcon/>}>
-                    pbeltrao@ebi.ac.uk
-                </Button>
+                This website requires cookies and the limited processing of your personal data in order to function. By using the site you are agreeing to this as outlined in the EBI <Link href='https://www.ebi.ac.uk/data-protection/privacy-notice/embl-ebi-public-website' target='_blank'>Privacy Notice</Link> and <Link href='https://www.ebi.ac.uk/about/terms-of-use/'>Terms of Use.</Link>
             </Typography>
         </div>
     )
