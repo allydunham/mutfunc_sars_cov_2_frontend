@@ -1,7 +1,7 @@
 // Store site globals in a centralised location
 export default {
-    'version': '1.0.1',
-    'update_date': '20/11/2020',
+    'version': '1.0.2',
+    'update_date': '21/04/2021',
     'vcf_version': '01/02/2021',
     'complexes': ['S - ACE2', 'S homotrimer', 'Nucleocapsid homodimer',
                   'Nsp1 - 40s Ribosome Subunit', 'Nsp7 - Nsp8', 'Nsp7 - Nsp8 - RdRp',
