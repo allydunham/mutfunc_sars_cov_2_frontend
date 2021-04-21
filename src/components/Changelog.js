@@ -34,11 +34,19 @@ const About = () => {
     return(
         <div className={classes.root}>
             <Typography variant='h5' className={classes.heading}>
+                21/04/2021 - Version 1.0.2
+            </Typography>
+            <Typography component={'span'} className={classes.content}>
+                Added annotations for strain B.1.617, which emerged in India in Febuary.
+            </Typography>
+    
+            <Typography variant='h5' className={classes.heading}>
                 05/03/2021 - Version 1.0.1
             </Typography>
             <Typography component={'span'} className={classes.content}>
                 Added basic Google Analytics in order to keep track of usage and prioritise development efforts.
             </Typography>
+            
             <Typography variant='h5' className={classes.heading}>
                 01/02/2021 - Version 1.0.0
             </Typography>
