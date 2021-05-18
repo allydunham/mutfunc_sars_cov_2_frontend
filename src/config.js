@@ -1,6 +1,6 @@
 // Store site globals in a centralised location
 export default {
-    'version': '1.0.2',
+    'version': '1.1.0',
     'update_date': '21/04/2021',
     'vcf_version': '01/02/2021',
     'complexes': ['S - ACE2', 'S homotrimer', 'Nucleocapsid homodimer',
